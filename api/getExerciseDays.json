@@ -1,0 +1,26 @@
+[
+  {
+    "weekDay": "Mon",
+    "exerciseDay": "Perna",
+    "exercises": [
+      {
+        "id": 1,
+        "name": "Leg Press",
+        "repetitions": [
+          {
+            "id": 1,
+            "weightInKilograms": "10"
+          },
+          {
+            "id": 2,
+            "weightInKilograms": ""
+          },
+          {
+            "id": 3,
+            "weightInKilograms": ""
+          }
+        ]
+      }
+    ]
+  }
+]
