@@ -3,7 +3,7 @@ var app = express()
 var cors = require('cors')
 var bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
-var getExercisesByDaysJson = require('./getExerciseDays.json') 
+var exerciseGet = require('./exercise-get.json') 
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -27,12 +27,23 @@ app.post('/check', function (req, res) {
     }catch{
         res.status(401).json({error: "invalid token"})
     }
-    
   })
 
+app.get('/exercises', function (req, res) {
+    try{
+        const token = req.headers.authorization
+        var decoded = jwt.verify(token.replace('Bearer ', ''), 'shhhhh');
+    
+        if(decoded){
+            res.json(exerciseGet)
+        }
+    }catch(e){
+        res.status(401).json({error: "invalid token"})
+    }
+})
 
-app.get('/get-exercises-by-days', function (req, res) {
-    res.json(getExercisesByDaysJson)
+app.post('/workout', function (req, res) {
+    res.json(exerciseGet)
 })
 
 app.listen(3000)

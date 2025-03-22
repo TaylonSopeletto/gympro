@@ -24,17 +24,22 @@ struct LoginView: View {
                 Text("username:")
                     .frame(width: 260, alignment: .leading)
                 TextField("username", text: $username)
-                    .frame(width: 240, height: 40)
-                    .padding(10)
-                    .border(Color.gray)
+                    .frame(width: 240)
+                    .padding()
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(10)
+                    .padding(.horizontal)
+                    
             }.padding(20)
             VStack{
                 Text("password:")
                     .frame(width: 260, alignment: .leading)
-                TextField("username", text: $password)
-                    .frame(width: 240, height: 40)
-                    .padding(10)
-                    .border(Color.gray)
+                TextField("password", text: $password)
+                    .frame(width: 240)
+                    .padding()
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(10)
+                    .padding(.horizontal)
             }
             
             Button(action: {
