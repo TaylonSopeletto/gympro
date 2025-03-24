@@ -1,5 +1,5 @@
 from django.contrib.auth.models import Group, User
-from .models import Teacher, Student, Category, Exercise, Serie
+from .models import Teacher, Student, Exercise, Serie
 from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
@@ -24,21 +24,14 @@ class StudentSerializer(serializers.ModelSerializer):
         fields = ['id', 'fullName', 'user', 'teacher']
 
 
-class CategorySerializer(serializers.ModelSerializer):
-    student = serializers.PrimaryKeyRelatedField(queryset=Student.objects.all())
-    class Meta:
-        model = Category
-        fields = ['id', 'name', 'weekday', 'student']
-
-
-class ExerciseSerializer(serializers.ModelSerializer):
-    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
-    class Meta:
-        model = Exercise
-        fields = ['id', 'name', 'category']
-
-class SerieSerializer(serializers.ModelSerializer):
-    exercise = serializers.PrimaryKeyRelatedField(queryset=Exercise.objects.all())
+class SerieSerializer(serializers.ModelSerializer): 
     class Meta:
         model = Serie
-        fields = ['id', 'exercise', 'weight', 'repetitions']
+        fields = ['id', 'weight', 'repetitions', 'exercise']
+
+class ExerciseSerializer(serializers.ModelSerializer):
+    series = SerieSerializer(many=True, read_only=True)
+    class Meta:
+        model = Exercise
+        fields = ['id', 'name', 'series', 'weekday', 'category']
+

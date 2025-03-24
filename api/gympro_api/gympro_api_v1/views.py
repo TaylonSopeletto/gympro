@@ -1,7 +1,9 @@
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from django.contrib.auth.models import Group, User
-from .models import Teacher, Student, Category, Exercise, Serie
+from .models import Teacher, Student, Exercise, Serie
 from rest_framework import permissions, viewsets
-from gympro_api.gympro_api_v1.serializers import  UserSerializer, TeacherSerializer, StudentSerializer, CategorySerializer, ExerciseSerializer, SerieSerializer
+from gympro_api.gympro_api_v1.serializers import  UserSerializer, TeacherSerializer, StudentSerializer, ExerciseSerializer, SerieSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -19,12 +21,6 @@ class TeacherViewSet(viewsets.ModelViewSet):
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all().order_by('fullName')
     serializer_class = StudentSerializer
-    permission_classes = [permissions.AllowAny]
-
-
-class CategoryViewSet(viewsets.ModelViewSet):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
     permission_classes = [permissions.AllowAny]
 
 class ExerciseViewSet(viewsets.ModelViewSet):

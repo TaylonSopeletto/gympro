@@ -25,19 +25,12 @@ class Student(models.Model):
         return self.fullName
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=30)
-    weekday = models.CharField(max_length=30)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-
 
 class Exercise(models.Model):
     name = models.CharField(max_length=30)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-
+    weekday = models.CharField(max_length=30)
+    category = models.CharField(max_length=30)
+    
     def __str__(self):
         return self.name
 
@@ -45,8 +38,8 @@ class Exercise(models.Model):
 class Serie(models.Model):
     weight = models.IntegerField(default=16)
     repetitions = models.IntegerField(default=16)
-    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
+    exercise = models.ForeignKey(Exercise, related_name='series', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return ''
 

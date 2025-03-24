@@ -7,9 +7,9 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'students', views.StudentViewSet)
 router.register(r'teachers', views.TeacherViewSet)
-router.register(r'categories', views.CategoryViewSet)
 router.register(r'exercises', views.ExerciseViewSet)
 router.register(r'series', views.SerieViewSet)
+
 
 
 urlpatterns = [
