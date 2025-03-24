@@ -1,2 +1,3 @@
 api/mock_api/node_modules
 api/env
+.DS_Store
