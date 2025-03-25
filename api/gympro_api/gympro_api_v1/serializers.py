@@ -27,10 +27,10 @@ class StudentSerializer(serializers.ModelSerializer):
 class SerieSerializer(serializers.ModelSerializer): 
     class Meta:
         model = Serie
-        fields = ['id', 'weight', 'repetitions', 'exercise']
+        fields = ['id', 'weight', 'repetitions']
 
 class ExerciseSerializer(serializers.ModelSerializer):
-    series = SerieSerializer(many=True, read_only=True)
+    series = SerieSerializer(many=True)
     class Meta:
         model = Exercise
         fields = ['id', 'name', 'series', 'weekday', 'category']

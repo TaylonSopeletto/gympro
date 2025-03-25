@@ -36,8 +36,8 @@ class Exercise(models.Model):
 
 
 class Serie(models.Model):
-    weight = models.IntegerField(default=16)
-    repetitions = models.IntegerField(default=16)
+    weight = models.IntegerField(default=0)
+    repetitions = models.IntegerField(default=0)
     exercise = models.ForeignKey(Exercise, related_name='series', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
