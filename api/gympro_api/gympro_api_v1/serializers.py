@@ -30,7 +30,7 @@ class SerieSerializer(serializers.ModelSerializer):
         fields = ['id', 'weight', 'repetitions']
 
 class ExerciseSerializer(serializers.ModelSerializer):
-    series = SerieSerializer(many=True)
+    series = SerieSerializer(many=True, required=False)
     class Meta:
         model = Exercise
         fields = ['id', 'name', 'series', 'weekday', 'category']
