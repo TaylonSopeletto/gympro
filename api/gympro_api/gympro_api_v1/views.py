@@ -1,9 +1,7 @@
 from rest_framework import permissions, viewsets, generics, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
 from django.contrib.auth.models import Group, User
-
 from .models import Teacher, Student, Exercise, Serie
 from gympro_api.gympro_api_v1.serializers import (
     UserSerializer,
@@ -22,13 +20,15 @@ class ExerciseList(generics.GenericAPIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        new_exercise = Exercise.objects.create()
-        new_exercise.name = request.data['name']
-        new_exercise.weekday = request.data['weekday']
-        new_exercise.category = request.data['category']
+        student = Student.objects.get(pk=request.data['student'])
 
-        new_exercise.save()
-
+        new_exercise = Exercise.objects.create(
+            name=request.data['name'],
+            weekday=request.data['weekday'],
+            category=request.data['category'],
+            student=student
+        )
+        
         for serie in request.data["series"]:
           new_serie = Serie.objects.create(weight=serie['weight'], repetitions=serie['repetitions'])
           new_serie.save()
@@ -48,10 +48,13 @@ class ExerciseDetail(generics.GenericAPIView):
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
+        student = Student.objects.get(pk=request.data['student'])
+
         exercise = Exercise.objects.get(pk=pk) 
         exercise.name = request.data['name']
         exercise.weekday = request.data['weekday']
         exercise.category = request.data['category']
+        exercise.student = student
 
         exercise.series.clear()
 
@@ -66,41 +69,61 @@ class ExerciseDetail(generics.GenericAPIView):
         return Response(serializer.data) 
 
 
-# better way of doing it
+class TeacherList(generics.GenericAPIView):
+    serializer_class = TeacherSerializer
 
-# from django.db import transaction
-# from rest_framework.views import APIView
-# from rest_framework.response import Response
-# from rest_framework import status
-# from .models import Exercise, Serie
-# from gympro_api.gympro_api_v1.serializers import ExerciseSerializer
+    def get(self, request, format=None):
+        teachers = Teacher.objects.all() 
+        serializer = TeacherSerializer(teachers, many=True)
+        return Response(serializer.data)
 
-# class ExerciseCreateView(APIView):
-#     def post(self, request, format=None):
-#         with transaction.atomic():  # Ensure atomicity
-#             # Extract data safely
-#             name = request.data.get("name", "")
-#             weekday = request.data.get("weekday", "")
-#             category = request.data.get("category", "")
-#             series_data = request.data.get("series", [])
+    def post(self, request, format=None):
+        new_user = User.objects.create_user(request.data['user']['username'], request.data['user']['email'], request.data['user']['password'])
+        new_user.save()
 
-#             # Create the exercise instance
-#             new_exercise = Exercise.objects.create(
-#                 name=name, weekday=weekday, category=category
-#             )
+        new_teacher = Teacher.objects.create(
+            user=new_user, 
+            fullName=request.data['fullName']
+        )
 
-#             # Bulk create series
-#             series_instances = [
-#                 Serie(weight=serie.get('weight', 0), repetitions=serie.get('repetitions', 0))
-#                 for serie in series_data
-#             ]
-#             created_series = Serie.objects.bulk_create(series_instances)
+        serializer = TeacherSerializer(new_teacher)
+        
+        return Response(serializer.data, status=status.HTTP_201_CREATED) 
 
-#             # Add the created series to the exercise
-#             new_exercise.series.add(*created_series)
 
-#             # Serialize and return the response
-#             serializer = ExerciseSerializer(new_exercise)
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+class StudentList(generics.GenericAPIView):
+    serializer_class = StudentSerializer
+
+    def get(self, request, format=None):
+        students = Student.objects.all() 
+        serializer = StudentSerializer(students, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        new_user = User.objects.create_user(request.data['user']['username'], request.data['user']['email'], request.data['user']['password'])
+        new_user.save()
+
+        teacher = Teacher.objects.get(pk=request.data['teacher'])
+
+        new_student = Student.objects.create(
+            user=new_user, 
+            teacher=teacher,
+            fullName=request.data['fullName']
+        )
+
+        serializer = StudentSerializer(new_student)
+        
+        return Response(serializer.data, status=status.HTTP_201_CREATED) 
+
+
+class StudentExerciseList(generics.GenericAPIView):
+    serializer_class = StudentSerializer
+
+    def get(self, request, format=None):
+        exercises = Exercise.objects.all() 
+        serializer = ExerciseSerializer(exercises, many=True)
+        return Response(serializer.data)
+
+  
 
     

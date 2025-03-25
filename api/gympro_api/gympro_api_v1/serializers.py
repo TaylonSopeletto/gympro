@@ -5,11 +5,11 @@ from rest_framework import serializers
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'url', 'username', 'email']
+        fields = ['id', 'username', 'email']
         
 
 class TeacherSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    user = UserSerializer()
  
     class Meta:
         model = Teacher
@@ -17,7 +17,7 @@ class TeacherSerializer(serializers.ModelSerializer):
 
 
 class StudentSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    user = UserSerializer()
     teacher = serializers.PrimaryKeyRelatedField(queryset=Teacher.objects.all())
     class Meta:
         model = Student
@@ -31,7 +31,8 @@ class SerieSerializer(serializers.ModelSerializer):
 
 class ExerciseSerializer(serializers.ModelSerializer):
     series = SerieSerializer(many=True, required=False)
+    student = serializers.PrimaryKeyRelatedField(queryset=Student.objects.all())
     class Meta:
         model = Exercise
-        fields = ['id', 'name', 'series', 'weekday', 'category']
+        fields = ['id', 'name', 'series', 'weekday', 'category', 'student']
 

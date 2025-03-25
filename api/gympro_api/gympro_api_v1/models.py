@@ -30,6 +30,7 @@ class Exercise(models.Model):
     name = models.CharField(max_length=30)
     weekday = models.CharField(max_length=30)
     category = models.CharField(max_length=30)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.name
