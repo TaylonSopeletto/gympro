@@ -136,8 +136,6 @@ class WorkoutList(generics.GenericAPIView):
             duration=request.data['duration']
         )
 
-        workout.save()
-
         for exercise in request.data["exercises"]:
             reletad_exercise = Exercise.objects.get(pk=exercise['id'])
             workout_exercise = WorkoutExercise.objects.create(
