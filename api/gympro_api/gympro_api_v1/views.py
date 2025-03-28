@@ -146,8 +146,6 @@ class WorkoutList(generics.GenericAPIView):
             workout_exercise.save()
 
             for serie in exercise["series"]:
-                
-                print(serie)
                 related_serie = Serie.objects.get(pk=serie["id"])
 
                 workout_serie = WorkoutSerie.objects.create(
@@ -158,7 +156,6 @@ class WorkoutList(generics.GenericAPIView):
                 )
 
                 workout_serie.save()
-
 
         workout.save()
         serializer = WorkoutSerializer(workout)
