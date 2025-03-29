@@ -26,11 +26,30 @@ class Student(models.Model):
         return self.fullName
 
 
+class Day(models.Model):
+    weekday = models.CharField(max_length=30)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.weekday
+
+class Category(models.Model):
+    name = models.CharField(max_length=30)
+    
+    def __str__(self):
+        return self.name
+
+class DayCategory(models.Model):
+    day = models.ForeignKey(Day, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.day.weekday} - {self.category.name}"
+
 class Exercise(models.Model):
     name = models.CharField(max_length=30)
-    weekday = models.CharField(max_length=30)
-    category = models.CharField(max_length=30)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.name
