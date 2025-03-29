@@ -7,12 +7,15 @@
 
 import SwiftUI
 
+
+
 struct LoginView: View {
     
     @ObservedObject var viewModel: AuthenticationViewModel
     
     @State private var username: String = ""
     @State private var password: String = ""
+    @State private var responseMessage = ""
     
     
     var body: some View {
@@ -29,6 +32,7 @@ struct LoginView: View {
                     .background(Color.gray.opacity(0.2))
                     .cornerRadius(10)
                     .padding(.horizontal)
+                    .autocapitalization(.none)
                     
             }.padding(20)
             VStack{
@@ -43,7 +47,7 @@ struct LoginView: View {
             }
             
             Button(action: {
-                viewModel.login(token: "your_jwt_token_here")
+                login(username: username, password: password)
             }){
                 Text("Submit")
             }
@@ -60,7 +64,18 @@ struct LoginView: View {
             viewModel.checkAuthentication()
         }
     }
-    
+    func login(username: String, password: String) {
+            AuthService.shared.login(username: username, password: password) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let token):
+                        viewModel.login(token: token)
+                    case .failure(let error):
+                        self.responseMessage = "Error: \(error.localizedDescription)"
+                    }
+                }
+            }
+        }
 }
 
 #Preview {

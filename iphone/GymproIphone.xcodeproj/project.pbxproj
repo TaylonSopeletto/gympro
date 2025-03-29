@@ -3,23 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C624ADF2C9F3123007FD431 /* GymproIphoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C624ADE2C9F3123007FD431 /* GymproIphoneApp.swift */; };
-		0C624AE12C9F3123007FD431 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C624AE02C9F3123007FD431 /* ContentView.swift */; };
 		0C624AE32C9F3124007FD431 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C624AE22C9F3124007FD431 /* Assets.xcassets */; };
 		0C624AE62C9F3124007FD431 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C624AE52C9F3124007FD431 /* Preview Assets.xcassets */; };
 		0C624AF02C9F3124007FD431 /* GymproIphoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C624AEF2C9F3124007FD431 /* GymproIphoneTests.swift */; };
 		0C624AFA2C9F3124007FD431 /* GymproIphoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C624AF92C9F3124007FD431 /* GymproIphoneUITests.swift */; };
 		0C624AFC2C9F3124007FD431 /* GymproIphoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C624AFB2C9F3124007FD431 /* GymproIphoneUITestsLaunchTests.swift */; };
-		0CEABB182CA2272000485207 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEABB172CA2272000485207 /* HomeView.swift */; };
-		0CEABB1A2CA2279C00485207 /* ExerciseDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEABB192CA2279C00485207 /* ExerciseDayView.swift */; };
-		0CEABB1C2CA2371F00485207 /* ExercisesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEABB1B2CA2371F00485207 /* ExercisesListView.swift */; };
-		0CEABB1E2CA2416600485207 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEABB1D2CA2416600485207 /* LoginView.swift */; };
 		CDF625402D978CFF0007F80E /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6253F2D978CF20007F80E /* KeychainHelper.swift */; };
 		CDF625432D978D630007F80E /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF625422D978D620007F80E /* AuthenticationViewModel.swift */; };
+		CDF625492D9843DE0007F80E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF625482D9843DB0007F80E /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +36,6 @@
 
 /* Begin PBXFileReference section */
 		0C624ADB2C9F3123007FD431 /* GymproIphone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymproIphone.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C624ADE2C9F3123007FD431 /* GymproIphoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymproIphoneApp.swift; sourceTree = "<group>"; };
-		0C624AE02C9F3123007FD431 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0C624AE22C9F3124007FD431 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C624AE52C9F3124007FD431 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0C624AEB2C9F3124007FD431 /* GymproIphoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymproIphoneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,13 +43,15 @@
 		0C624AF52C9F3124007FD431 /* GymproIphoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymproIphoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C624AF92C9F3124007FD431 /* GymproIphoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymproIphoneUITests.swift; sourceTree = "<group>"; };
 		0C624AFB2C9F3124007FD431 /* GymproIphoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymproIphoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		0CEABB172CA2272000485207 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		0CEABB192CA2279C00485207 /* ExerciseDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDayView.swift; sourceTree = "<group>"; };
-		0CEABB1B2CA2371F00485207 /* ExercisesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesListView.swift; sourceTree = "<group>"; };
-		0CEABB1D2CA2416600485207 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CDF6253F2D978CF20007F80E /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		CDF625422D978D620007F80E /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		CDF625482D9843DB0007F80E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CDF625442D9840800007F80E /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
+		CDF6254A2D98442D0007F80E /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0C624AD82C9F3123007FD431 /* Frameworks */ = {
@@ -106,14 +101,11 @@
 		0C624ADD2C9F3123007FD431 /* GymproIphone */ = {
 			isa = PBXGroup;
 			children = (
+				CDF625482D9843DB0007F80E /* Constants.swift */,
+				CDF6254A2D98442D0007F80E /* Views */,
+				CDF625442D9840800007F80E /* Services */,
 				CDF625412D978D570007F80E /* ViewModels */,
 				CDF6253E2D978CE90007F80E /* Helpers */,
-				0C624ADE2C9F3123007FD431 /* GymproIphoneApp.swift */,
-				0C624AE02C9F3123007FD431 /* ContentView.swift */,
-				0CEABB172CA2272000485207 /* HomeView.swift */,
-				0CEABB192CA2279C00485207 /* ExerciseDayView.swift */,
-				0CEABB1B2CA2371F00485207 /* ExercisesListView.swift */,
-				0CEABB1D2CA2416600485207 /* LoginView.swift */,
 				0C624AE22C9F3124007FD431 /* Assets.xcassets */,
 				0C624AE42C9F3124007FD431 /* Preview Content */,
 			);
@@ -175,6 +167,10 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				CDF625442D9840800007F80E /* Services */,
+				CDF6254A2D98442D0007F80E /* Views */,
 			);
 			name = GymproIphone;
 			productName = GymproIphone;
@@ -291,14 +287,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0CEABB1E2CA2416600485207 /* LoginView.swift in Sources */,
-				0CEABB182CA2272000485207 /* HomeView.swift in Sources */,
-				0CEABB1A2CA2279C00485207 /* ExerciseDayView.swift in Sources */,
-				0C624AE12C9F3123007FD431 /* ContentView.swift in Sources */,
 				CDF625432D978D630007F80E /* AuthenticationViewModel.swift in Sources */,
+				CDF625492D9843DE0007F80E /* Constants.swift in Sources */,
 				CDF625402D978CFF0007F80E /* KeychainHelper.swift in Sources */,
-				0CEABB1C2CA2371F00485207 /* ExercisesListView.swift in Sources */,
-				0C624ADF2C9F3123007FD431 /* GymproIphoneApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
