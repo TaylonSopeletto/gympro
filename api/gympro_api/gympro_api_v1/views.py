@@ -20,7 +20,11 @@ class DayList(generics.GenericAPIView):
     serializer_class = DaySerializer
     
     def get(self, request, format=None):
-        days = Day.objects.all() 
+
+        user = request.user
+        student = user.student
+
+        days = Day.objects.filter(student=student)
         serializer = DaySerializer(days, many=True)
         return Response(serializer.data)
 
@@ -91,9 +95,13 @@ class ExerciseList(generics.ListAPIView):
         responses={200: ExerciseSerializer(many=True)}
     )
     def get(self, request, format=None):
+
+        user = request.user
+        student = user.student
+
         category_ids = request.query_params.get('category_ids')
 
-        exercises = Exercise.objects.all()
+        exercises = Exercise.objects.filter(student=student)
 
         if category_ids:           
             category_ids = [int(id) for id in category_ids.split(",")]
