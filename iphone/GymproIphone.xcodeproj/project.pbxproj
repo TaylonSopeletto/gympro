@@ -18,6 +18,8 @@
 		0CEABB1A2CA2279C00485207 /* ExerciseDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEABB192CA2279C00485207 /* ExerciseDayView.swift */; };
 		0CEABB1C2CA2371F00485207 /* ExercisesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEABB1B2CA2371F00485207 /* ExercisesListView.swift */; };
 		0CEABB1E2CA2416600485207 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEABB1D2CA2416600485207 /* LoginView.swift */; };
+		CDF625402D978CFF0007F80E /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6253F2D978CF20007F80E /* KeychainHelper.swift */; };
+		CDF625432D978D630007F80E /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF625422D978D620007F80E /* AuthenticationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		0CEABB192CA2279C00485207 /* ExerciseDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDayView.swift; sourceTree = "<group>"; };
 		0CEABB1B2CA2371F00485207 /* ExercisesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesListView.swift; sourceTree = "<group>"; };
 		0CEABB1D2CA2416600485207 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		CDF6253F2D978CF20007F80E /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		CDF625422D978D620007F80E /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 		0C624ADD2C9F3123007FD431 /* GymproIphone */ = {
 			isa = PBXGroup;
 			children = (
+				CDF625412D978D570007F80E /* ViewModels */,
+				CDF6253E2D978CE90007F80E /* Helpers */,
 				0C624ADE2C9F3123007FD431 /* GymproIphoneApp.swift */,
 				0C624AE02C9F3123007FD431 /* ContentView.swift */,
 				0CEABB172CA2272000485207 /* HomeView.swift */,
@@ -137,6 +143,22 @@
 				0C624AFB2C9F3124007FD431 /* GymproIphoneUITestsLaunchTests.swift */,
 			);
 			path = GymproIphoneUITests;
+			sourceTree = "<group>";
+		};
+		CDF6253E2D978CE90007F80E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CDF6253F2D978CF20007F80E /* KeychainHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		CDF625412D978D570007F80E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CDF625422D978D620007F80E /* AuthenticationViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +295,8 @@
 				0CEABB182CA2272000485207 /* HomeView.swift in Sources */,
 				0CEABB1A2CA2279C00485207 /* ExerciseDayView.swift in Sources */,
 				0C624AE12C9F3123007FD431 /* ContentView.swift in Sources */,
+				CDF625432D978D630007F80E /* AuthenticationViewModel.swift in Sources */,
+				CDF625402D978CFF0007F80E /* KeychainHelper.swift in Sources */,
 				0CEABB1C2CA2371F00485207 /* ExercisesListView.swift in Sources */,
 				0C624ADF2C9F3123007FD431 /* GymproIphoneApp.swift in Sources */,
 			);

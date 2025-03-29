@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @Binding var isLoggedIn: Bool
+    @ObservedObject var viewModel: AuthenticationViewModel
     
     @State private var username: String = ""
     @State private var password: String = ""
@@ -43,19 +43,26 @@ struct LoginView: View {
             }
             
             Button(action: {
-                isLoggedIn = true
+                viewModel.login(token: "your_jwt_token_here")
             }){
                 Text("Submit")
             }
+            
             .frame(width: 100, height: 40)
             .background(.blue)
             .foregroundColor(.white)
             .cornerRadius(20)
             .padding(30)
+            
+        }
+        .navigationBarBackButtonHidden(true)
+        .onAppear {
+            viewModel.checkAuthentication()
         }
     }
+    
 }
 
 #Preview {
-    LoginView(isLoggedIn: .constant(true))
+    LoginView(viewModel: AuthenticationViewModel())
 }

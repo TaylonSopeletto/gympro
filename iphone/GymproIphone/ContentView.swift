@@ -9,20 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var isLoggedIn = false
+    @StateObject var viewModel = AuthenticationViewModel()
     @State private var exerciseRuning = false
     
 
     var body: some View {
+        
         NavigationStack{
-            if isLoggedIn {
-                HomeView()
+            if viewModel.isAuthenticated {
+                HomeView(viewModel: viewModel)
                     .transition(.scale)
             } else {
-                LoginView(isLoggedIn: $isLoggedIn)
+                LoginView(viewModel: viewModel)
                     .transition(.scale)
             }
-        }.animation(.easeInOut, value: isLoggedIn)
+        } .onAppear {
+            viewModel.checkAuthentication()
+        }
+       
     }
 }
 

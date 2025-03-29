@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject var viewModel: AuthenticationViewModel
+    
     var body: some View {
         VStack {
+            Button(action: {
+                viewModel.logout()
+            }){
+                Text("logout")
+            }
             Text("Gympro")
                 .bold()
                 .font(.title)
@@ -68,5 +75,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(viewModel: AuthenticationViewModel())
 }

@@ -12,9 +12,11 @@ from gympro_api.gympro_api_v1.serializers import (
     WorkoutSerializer
 )
 
+
 class ExerciseList(generics.GenericAPIView):
     serializer_class = ExerciseSerializer
-
+    permission_classes = [permissions.IsAuthenticated]
+    
     def get(self, request, format=None):
         exercises = Exercise.objects.all() 
         serializer = ExerciseSerializer(exercises, many=True)
