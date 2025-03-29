@@ -20,9 +20,10 @@ struct LoginView: View {
     
     var body: some View {
         VStack{
-            Text("Login")
-                .font(.title)
-                .padding(30)
+            Text("Gympro")
+                .font(.title2)
+                .fontWeight(.bold)
+                .padding(.bottom, 200)
             VStack{
                 Text("username:")
                     .frame(width: 260, alignment: .leading)
@@ -38,7 +39,7 @@ struct LoginView: View {
             VStack{
                 Text("password:")
                     .frame(width: 260, alignment: .leading)
-                TextField("password", text: $password)
+                SecureField("password", text: $password)
                     .frame(width: 240)
                     .padding()
                     .background(Color.gray.opacity(0.2))
@@ -46,16 +47,24 @@ struct LoginView: View {
                     .padding(.horizontal)
             }
             
+            Text(responseMessage)
+                .frame(width: 260)
+                .foregroundColor(Color.red)
+                .padding(.top, 20)
+                .padding(.bottom, 20)
+            
+            Text("Forgot password?")
+            
             Button(action: {
                 login(username: username, password: password)
             }){
                 Text("Submit")
             }
             
-            .frame(width: 100, height: 40)
-            .background(.blue)
+            .frame(width: 150, height: 50)
+            .background(.black)
             .foregroundColor(.white)
-            .cornerRadius(20)
+            .cornerRadius(10)
             .padding(30)
             
         }

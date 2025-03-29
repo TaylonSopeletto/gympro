@@ -9,66 +9,46 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var viewModel: AuthenticationViewModel
+    let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     
     var body: some View {
         VStack {
-            Button(action: {
-                viewModel.logout()
-            }){
-                Text("logout")
-            }
-            Text("Gympro")
+            Text("Hello, [name]!")
                 .bold()
                 .font(.title)
                 .padding(10)
-            Text("Pick your exercise day").padding(20)
-            HStack{
-                NavigationLink(destination: ExerciseDayView()){
-                    Text("Mon")
-                        .frame(width: 60, height: 60)
-                        .background(Color.blue)
-                        .cornerRadius(50)
-                        .foregroundColor(.white)
-                }
-                NavigationLink(destination: ExerciseDayView()){
-                    Text("Tue")
-                        .frame(width: 60, height: 60)
-                        .background(Color.gray)
-                        .cornerRadius(50)
-                        .foregroundColor(.white)
-                }
-                NavigationLink(destination: ExerciseDayView()){
-                    Text("Wed")
-                        .frame(width: 60, height: 60)
-                        .background(Color.gray)
-                        .cornerRadius(50)
-                        .foregroundColor(.white)
-                }
-            }
-            HStack{
-                NavigationLink(destination: ExerciseDayView()){
-                    Text("Thu")
-                        .frame(width: 60, height: 60)
-                        .background(Color.gray)
-                        .cornerRadius(50)
-                        .foregroundColor(.white)
-                }
-                NavigationLink(destination: ExerciseDayView()){
-                    Text("Fri")
-                        .frame(width: 60, height: 60)
-                        .background(Color.gray)
-                        .cornerRadius(50)
-                        .foregroundColor(.white)
-                }
-                NavigationLink(destination: ExerciseDayView()){
-                    Text("Sat")
-                        .frame(width: 60, height: 60)
-                        .background(Color.gray)
-                        .cornerRadius(50)
-                        .foregroundColor(.white)
+            
+            Text("Weekday").padding(20)
+            
+            VStack {
+                ForEach(0..<2) { row in
+                    HStack {
+                        ForEach(days[row * 3..<min(row * 3 + 3, days.count)], id: \.self) { day in
+                            NavigationLink(destination: ExerciseDayView()) {
+                                Text(day)
+                                    .frame(width: 80, height: 80)
+                                    .background(day == "Mon" ? Color.black : Color.gray.opacity(0.1))
+                                    .cornerRadius(20)
+                                    .foregroundColor(day == "Mon" ? Color.white : Color.black)
+                                    
+                            }
+                        }
+                    }
                 }
             }
             
+            Text("Exercise").padding(20)
+            HStack {
+                Button(action: {}){
+                    Text("<")
+                }
+                Text("Legs").padding(20)
+                Button(action: {}){
+                    Text(">")
+                }
+                
+            }
+                       
         }
         .padding()
     }
