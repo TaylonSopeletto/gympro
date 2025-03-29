@@ -13,7 +13,7 @@ class TeacherSerializer(serializers.ModelSerializer):
  
     class Meta:
         model = Teacher
-        fields = ['id', 'fullName', 'user']
+        fields = ['id', 'full_name', 'user', 'picture_url']
 
 
 class StudentSerializer(serializers.ModelSerializer):
@@ -21,7 +21,7 @@ class StudentSerializer(serializers.ModelSerializer):
     teacher = serializers.PrimaryKeyRelatedField(queryset=Teacher.objects.all())
     class Meta:
         model = Student
-        fields = ['id', 'fullName', 'user', 'teacher']
+        fields = ['id', 'full_name', 'user', 'teacher', 'picture_url']
 
 
 class SerieSerializer(serializers.ModelSerializer): 
@@ -59,4 +59,4 @@ class WorkoutSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Workout
-        fields = ['id', 'student', 'startDate', 'endDate', 'duration', 'exercises']
+        fields = ['id', 'student', 'start_date', 'end_date', 'duration', 'exercises']

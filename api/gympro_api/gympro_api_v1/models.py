@@ -2,19 +2,21 @@ from django.db import models
 from django.contrib. auth.models import User
 
 class Teacher(models.Model):
-    fullName = models.CharField(max_length=30)
+    full_name = models.CharField(max_length=30)
+    picture_url = models.CharField(max_length=400, default="https://i.stack.imgur.com/y9DpT.jpg")
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE
     )
 
     def __str__(self):
-        return self.fullName
+        return self.full_name
 
 
 class Student(models.Model):
-    fullName = models.CharField(max_length=30)
+    full_name = models.CharField(max_length=30)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    picture_url = models.CharField(max_length=400, default="https://i.stack.imgur.com/y9DpT.jpg")
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE
@@ -43,8 +45,8 @@ class Serie(models.Model):
 
 class Workout(models.Model):
     name = models.CharField(max_length=30)
-    startDate = models.DateTimeField(blank=True)
-    endDate = models.DateTimeField(blank=True)
+    start_date = models.DateTimeField(blank=True)
+    end_date = models.DateTimeField(blank=True)
     duration = models.IntegerField(default=0)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     
