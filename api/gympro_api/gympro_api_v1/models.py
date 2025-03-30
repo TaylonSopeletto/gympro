@@ -27,37 +27,32 @@ class Student(models.Model):
 
 
 class Day(models.Model):
+    name = models.CharField(max_length=30)
     weekday = models.CharField(max_length=30)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.weekday
 
-class Category(models.Model):
-    name = models.CharField(max_length=30)
-    
-    def __str__(self):
-        return self.name
-
-class DayCategory(models.Model):
-    day = models.ForeignKey(Day, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.day.weekday} - {self.category.name}"
 
 class Exercise(models.Model):
     name = models.CharField(max_length=30)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    
+
     def __str__(self):
         return self.name
 
+class ExerciseDay(models.Model):
+    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
+    day = models.ForeignKey(Day, on_delete=models.CASCADE)
+    position = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return self.exercise
+
 class Serie(models.Model):
+    exercise_day = models.ForeignKey(ExerciseDay, on_delete=models.CASCADE) 
     weight = models.IntegerField(default=0)
     repetitions = models.IntegerField(default=0)
-    exercise = models.ForeignKey(Exercise, related_name='series', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return ''

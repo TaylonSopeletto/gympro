@@ -1,5 +1,5 @@
 from django.contrib.auth.models import Group, User
-from .models import Teacher, Student, Exercise, Serie, Workout, Category, Day, WorkoutExercise, WorkoutSerie, DayCategory
+from .models import Teacher, Student, Exercise, Serie, Workout, Day, WorkoutExercise, WorkoutSerie, ExerciseDay
 from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
@@ -29,32 +29,24 @@ class SerieSerializer(serializers.ModelSerializer):
         model = Serie
         fields = ['id', 'weight', 'repetitions']
 
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ['id', 'name']
 
-class DayCategorySerializer(serializers.ModelSerializer):
-    name = serializers.CharField(source='category.name')
-
+class ExerciseDaySerializer(serializers.ModelSerializer):
+    name = serializers.CharField(source='exercise.name')
     class Meta:
-        model = DayCategory
-        fields = ['id', 'name']
+        model = ExerciseDay
+        fields = ['id', 'position', 'name']
 
 class DaySerializer(serializers.ModelSerializer):
-    categories = DayCategorySerializer(source='daycategory_set', many=True)
     student = serializers.PrimaryKeyRelatedField(queryset=Student.objects.all())
+    exercises = ExerciseDaySerializer(source='exerciseday_set', many=True)
     class Meta:
         model = Day
-        fields = ['id', 'weekday', 'categories', 'student']
+        fields = ['id', 'name', 'weekday', 'student', 'exercises']
 
-class ExerciseSerializer(serializers.ModelSerializer):
-    series = SerieSerializer(many=True, required=False)
-    student = serializers.PrimaryKeyRelatedField(queryset=Student.objects.all())
-    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
+class ExerciseSerializer(serializers.ModelSerializer): 
     class Meta:
         model = Exercise
-        fields = ['id', 'name', 'series', 'student', 'category']
+        fields = ['id', 'name']
 
 class WorkoutSerieSerializer(serializers.ModelSerializer):
     class Meta:

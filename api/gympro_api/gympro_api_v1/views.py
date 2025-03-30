@@ -4,13 +4,12 @@ from rest_framework.response import Response
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 from django.contrib.auth.models import Group, User
-from .models import Teacher, Student, Exercise, Serie, Workout, Category, Day, WorkoutExercise, WorkoutSerie, DayCategory
+from .models import Teacher, Student, Exercise, Serie, Workout, Day, WorkoutExercise, WorkoutSerie, ExerciseDay
 from gympro_api.gympro_api_v1.serializers import (
     UserSerializer,
     TeacherSerializer,
     StudentSerializer,
     ExerciseSerializer,
-    CategorySerializer,
     SerieSerializer,
     WorkoutSerializer,
     DaySerializer
@@ -32,13 +31,19 @@ class DayList(generics.GenericAPIView):
         student = Student.objects.get(pk=request.data['student'])
 
         new_day = Day.objects.create(
+            name=request.data['name'],
             weekday=request.data['weekday'],
             student=student
         )
 
-        for category in request.data["categories"]:
-            find_category = Category.objects.get(pk=category['id'])
-            DayCategory.objects.create(day=new_day, category=find_category)
+        for exercise in request.data["exercises"]:
+            find_exercise = Exercise.objects.get(pk=exercise['id'])
+            exercise_day = ExerciseDay.objects.create(
+                exercise=find_exercise,
+                day=new_day,
+                position=exercise['position']
+            )
+            exercise_day.save()
 
         new_day.save() 
            
@@ -52,32 +57,7 @@ class DayDetail(generics.GenericAPIView):
     def delete(self, request, pk, format=None):
         entry = Day.objects.get(pk=pk).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-       
-
-class CategoryList(generics.GenericAPIView):
-    serializer_class = CategorySerializer
-    
-    def get(self, request, format=None):
-        categories = Category.objects.all() 
-        serializer = CategorySerializer(categories, many=True)
-        return Response(serializer.data)
-
-    def post(self, request, format=None):
-        new_category = Category.objects.create(
-            name=request.data['name']
-        )
-        new_category.save()
-        serializer = CategorySerializer(new_category)
-        return Response(serializer.data, status=status.HTTP_201_CREATED) 
-
-class CategoryDetail(generics.GenericAPIView):
-    serializer_class = CategorySerializer
-    
-    def delete(self, request, pk, format=None):
-        entry = Category.objects.get(pk=pk).delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-   
+          
 
 class ExerciseList(generics.ListAPIView):
     serializer_class = ExerciseSerializer
@@ -111,23 +91,10 @@ class ExerciseList(generics.ListAPIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        student = Student.objects.get(pk=request.data['student'])
-        category = Category.objects.get(pk=request.data['category'])
-
         new_exercise = Exercise.objects.create(
-            name=request.data['name'],
-            student=student,
-            category=category
+            name=request.data['name']
         )
         
-        for serie in request.data["series"]:
-            new_serie = Serie.objects.create(
-                weight=serie['weight'],
-                repetitions=serie['repetitions']
-            )
-            new_serie.save()
-            new_exercise.series.add(new_serie)
-
         new_exercise.save()
 
         serializer = ExerciseSerializer(new_exercise)

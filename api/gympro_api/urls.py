@@ -34,8 +34,6 @@ urlpatterns = [
    path('teachers/', views.TeacherList.as_view()),
    path('students/', views.StudentList.as_view()),
    path('workouts/', views.WorkoutList.as_view()),
-   path('categories/', views.CategoryList.as_view()),
-   path('categories/<int:pk>', views.CategoryDetail.as_view()),
    path('days/', views.DayList.as_view()),
    path('days/<int:pk>', views.DayDetail.as_view())
 ]
