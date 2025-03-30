@@ -32,13 +32,16 @@ class SerieSerializer(serializers.ModelSerializer):
 
 class ExerciseDaySerializer(serializers.ModelSerializer):
     name = serializers.CharField(source='exercise.name')
+    series = SerieSerializer(source='serie_set', many=True)
+
     class Meta:
         model = ExerciseDay
-        fields = ['id', 'position', 'name']
+        fields = ['id', 'position', 'name', 'series']
 
 class DaySerializer(serializers.ModelSerializer):
     student = serializers.PrimaryKeyRelatedField(queryset=Student.objects.all())
     exercises = ExerciseDaySerializer(source='exerciseday_set', many=True)
+    
     class Meta:
         model = Day
         fields = ['id', 'name', 'weekday', 'student', 'exercises']

@@ -44,6 +44,13 @@ class DayList(generics.GenericAPIView):
                 position=exercise['position']
             )
             exercise_day.save()
+            for serie in exercise["series"]:
+                serie = Serie.objects.create(
+                    exercise_day=exercise_day,
+                    weight=serie['weight'],
+                    repetitions=serie['repetitions']
+                )
+                serie.save()
 
         new_day.save() 
            
@@ -66,9 +73,9 @@ class ExerciseList(generics.ListAPIView):
     @swagger_auto_schema(
         manual_parameters=[
             openapi.Parameter(
-                'category_ids',
+                'day_ids',
                 openapi.IN_QUERY,
-                description="Comma-separated category IDs (e.g., ?category_ids=1,2,3)",
+                description="Comma-separated day IDs (e.g., ?day_ids=1,2,3)",
                 type=openapi.TYPE_STRING,
             ),
         ],
@@ -76,17 +83,19 @@ class ExerciseList(generics.ListAPIView):
     )
     def get(self, request, format=None):
 
-        user = request.user
-        student = user.student
+        day_ids = request.query_params.get('day_ids')
+        exercises = Exercise.objects.all()
 
-        category_ids = request.query_params.get('category_ids')
+        if day_ids:
+            day_ids = [int(id) for id in day_ids.split(",")]
+            # Filter ExerciseDay first, then retrieve Exercises
+            exercises = Exercise.objects.filter(
+                exerciseday__day_id__in=day_ids
+            ).distinct()
+        else:
+            exercises = Exercise.objects.all()
 
-        exercises = Exercise.objects.filter(student=student)
-
-        if category_ids:           
-            category_ids = [int(id) for id in category_ids.split(",")]
-            exercises = exercises.filter(category_id__in=category_ids)
-
+    
         serializer = ExerciseSerializer(exercises, many=True)
         return Response(serializer.data)
 
