@@ -60,7 +60,6 @@ struct LoginView: View {
             }){
                 Text("Submit")
             }
-            
             .frame(width: 150, height: 50)
             .background(.black)
             .foregroundColor(.white)
