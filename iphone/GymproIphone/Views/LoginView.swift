@@ -73,17 +73,17 @@ struct LoginView: View {
         }
     }
     func login(username: String, password: String) {
-            AuthService.shared.login(username: username, password: password) { result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(let token):
-                        viewModel.login(token: token)
-                    case .failure(let error):
-                        self.responseMessage = "Error: \(error.localizedDescription)"
-                    }
+        AuthService.shared.login(username: username, password: password) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let token):
+                    viewModel.login(token: token)
+                case .failure(let error):
+                    self.responseMessage = "Error: \(error.localizedDescription)"
                 }
             }
         }
+    }
 }
 
 #Preview {

@@ -88,7 +88,6 @@ class ExerciseList(generics.ListAPIView):
 
         if day_ids:
             day_ids = [int(id) for id in day_ids.split(",")]
-            # Filter ExerciseDay first, then retrieve Exercises
             exercises = Exercise.objects.filter(
                 exerciseday__day_id__in=day_ids
             ).distinct()

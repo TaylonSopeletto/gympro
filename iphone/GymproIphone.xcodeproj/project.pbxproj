@@ -49,6 +49,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		CD3A8FF22D99B37E00EC89CE /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
 		CDF625442D9840800007F80E /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
 		CDF6254A2D98442D0007F80E /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -101,6 +102,7 @@
 		0C624ADD2C9F3123007FD431 /* GymproIphone */ = {
 			isa = PBXGroup;
 			children = (
+				CD3A8FF22D99B37E00EC89CE /* Models */,
 				CDF625482D9843DB0007F80E /* Constants.swift */,
 				CDF6254A2D98442D0007F80E /* Views */,
 				CDF625442D9840800007F80E /* Services */,
@@ -169,6 +171,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				CD3A8FF22D99B37E00EC89CE /* Models */,
 				CDF625442D9840800007F80E /* Services */,
 				CDF6254A2D98442D0007F80E /* Views */,
 			);
