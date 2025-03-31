@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct DaysResponse: Codable {
+struct DaysResponse: Codable, Hashable {
     let id: Int
     let name: String
     let weekday: String
@@ -16,14 +16,14 @@ struct DaysResponse: Codable {
     let exercises: [Exercise]
 }
 
-struct Exercise: Codable {
+struct Exercise: Codable, Hashable {
     let id: Int
     let position: Int
     let name: String
     let series: [Series]
 }
 
-struct Series: Codable {
+struct Series: Codable, Hashable {
     let id: Int
     let weight: Int
     let repetitions: Int
