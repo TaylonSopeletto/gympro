@@ -9,27 +9,38 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @StateObject var timerManager = TimerManager()
     @StateObject var viewModel = AuthenticationViewModel()
-    @State private var exerciseRuning = false
+    @State private var path = NavigationPath()
     
 
     var body: some View {
-        
-        NavigationStack{
-            if viewModel.isAuthenticated {
+        NavigationStack(path: $path){
+            if viewModel.getRole() == "student" {
                 HomeView(viewModel: viewModel)
                     .transition(.scale)
+                  
+               
             } else {
-                LoginView(viewModel: viewModel)
-                    .transition(.scale)
+                if viewModel.getRole() == "teacher" {
+                    TeacherView()
+                }else{
+                    LoginView(viewModel: viewModel)
+                        .transition(.scale)
+                }
+               
             }
-        } .onAppear {
+        }
+        .environmentObject(timerManager)
+        .onAppear {
             viewModel.checkAuthentication()
         }
-       
+        .onChange(of: viewModel.getRole()) {
+            path = NavigationPath()
+        }
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView().environmentObject(TimerManager())
 }

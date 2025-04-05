@@ -12,6 +12,10 @@
 		0C624AF02C9F3124007FD431 /* GymproIphoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C624AEF2C9F3124007FD431 /* GymproIphoneTests.swift */; };
 		0C624AFA2C9F3124007FD431 /* GymproIphoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C624AF92C9F3124007FD431 /* GymproIphoneUITests.swift */; };
 		0C624AFC2C9F3124007FD431 /* GymproIphoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C624AFB2C9F3124007FD431 /* GymproIphoneUITestsLaunchTests.swift */; };
+		CD1D10AB2D9F6649006A9DD3 /* JwtDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1D10AA2D9F6642006A9DD3 /* JwtDecoder.swift */; };
+		CDB42C872D9B3C7B002967BC /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB42C862D9B3C7B002967BC /* Header.swift */; };
+		CDC44CE82DA17381000C3DEC /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC44CE72DA1737F000C3DEC /* Colors.swift */; };
+		CDC44CED2DA1A82C000C3DEC /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC44CEC2DA1A829000C3DEC /* TimeManager.swift */; };
 		CDF625402D978CFF0007F80E /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF6253F2D978CF20007F80E /* KeychainHelper.swift */; };
 		CDF625432D978D630007F80E /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF625422D978D620007F80E /* AuthenticationViewModel.swift */; };
 		CDF625492D9843DE0007F80E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF625482D9843DB0007F80E /* Constants.swift */; };
@@ -43,6 +47,10 @@
 		0C624AF52C9F3124007FD431 /* GymproIphoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymproIphoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C624AF92C9F3124007FD431 /* GymproIphoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymproIphoneUITests.swift; sourceTree = "<group>"; };
 		0C624AFB2C9F3124007FD431 /* GymproIphoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymproIphoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CD1D10AA2D9F6642006A9DD3 /* JwtDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtDecoder.swift; sourceTree = "<group>"; };
+		CDB42C862D9B3C7B002967BC /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		CDC44CE72DA1737F000C3DEC /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		CDC44CEC2DA1A829000C3DEC /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 		CDF6253F2D978CF20007F80E /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		CDF625422D978D620007F80E /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		CDF625482D9843DB0007F80E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -102,8 +110,9 @@
 		0C624ADD2C9F3123007FD431 /* GymproIphone */ = {
 			isa = PBXGroup;
 			children = (
-				CD3A8FF22D99B37E00EC89CE /* Models */,
+				CDB42C852D9B3C5B002967BC /* Shared */,
 				CDF625482D9843DB0007F80E /* Constants.swift */,
+				CD3A8FF22D99B37E00EC89CE /* Models */,
 				CDF6254A2D98442D0007F80E /* Views */,
 				CDF625442D9840800007F80E /* Services */,
 				CDF625412D978D570007F80E /* ViewModels */,
@@ -139,9 +148,20 @@
 			path = GymproIphoneUITests;
 			sourceTree = "<group>";
 		};
+		CDB42C852D9B3C5B002967BC /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				CDB42C862D9B3C7B002967BC /* Header.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		CDF6253E2D978CE90007F80E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CDC44CEC2DA1A829000C3DEC /* TimeManager.swift */,
+				CDC44CE72DA1737F000C3DEC /* Colors.swift */,
+				CD1D10AA2D9F6642006A9DD3 /* JwtDecoder.swift */,
 				CDF6253F2D978CF20007F80E /* KeychainHelper.swift */,
 			);
 			path = Helpers;
@@ -291,8 +311,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDF625432D978D630007F80E /* AuthenticationViewModel.swift in Sources */,
+				CDB42C872D9B3C7B002967BC /* Header.swift in Sources */,
+				CDC44CE82DA17381000C3DEC /* Colors.swift in Sources */,
 				CDF625492D9843DE0007F80E /* Constants.swift in Sources */,
+				CD1D10AB2D9F6649006A9DD3 /* JwtDecoder.swift in Sources */,
 				CDF625402D978CFF0007F80E /* KeychainHelper.swift in Sources */,
+				CDC44CED2DA1A82C000C3DEC /* TimeManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +480,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GymproIphone/Preview Content\"";
+				DEVELOPMENT_TEAM = J8WAVP4942;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -484,6 +509,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GymproIphone/Preview Content\"";
+				DEVELOPMENT_TEAM = J8WAVP4942;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

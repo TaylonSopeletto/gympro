@@ -1,6 +1,17 @@
 from django.contrib.auth.models import Group, User
 from .models import Teacher, Student, Exercise, Serie, Workout, Day, WorkoutExercise, WorkoutSerie, ExerciseDay
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def get_token(self, user):
+        token = super().get_token(user)
+
+        token["username"] = user.username
+        token["is_student"] = hasattr(user, "student")
+        token["is_teacher"] = hasattr(user, "teacher")
+
+        return token
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

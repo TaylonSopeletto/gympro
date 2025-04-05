@@ -11,6 +11,8 @@ import SwiftUI
 
 struct LoginView: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     @ObservedObject var viewModel: AuthenticationViewModel
     
     @State private var username: String = ""
@@ -61,8 +63,8 @@ struct LoginView: View {
                 Text("Submit")
             }
             .frame(width: 150, height: 50)
-            .background(.black)
-            .foregroundColor(.white)
+            .background(AppColors.actionBackgroundColor(for: colorScheme))
+            .foregroundColor(AppColors.actionForengroundColor(for: colorScheme))
             .cornerRadius(10)
             .padding(30)
             

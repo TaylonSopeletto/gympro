@@ -28,4 +28,25 @@ class AuthenticationViewModel: ObservableObject {
             isAuthenticated = false
         }
     }
+    
+    func getRole() -> String?{
+        if let token = KeychainHelper.getToken(forKey: "jwtToken"){
+            let decoded = JWTDecoder.decode(jwtToken: token)
+            if(decoded?.is_student == true){
+                return "student"
+            }
+            if(decoded?.is_teacher == true){
+                return "teacher"
+            }
+        }
+        return "no_role"
+    }
+    
+    func decodeToken() -> JWTPayload? {
+        if let token = KeychainHelper.getToken(forKey: "jwtToken"){
+            let decoded = JWTDecoder.decode(jwtToken: token)
+            return decoded
+        }
+        return nil
+    }
 }

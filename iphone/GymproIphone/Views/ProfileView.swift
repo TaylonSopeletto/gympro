@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
+    @ObservedObject var viewModel: AuthenticationViewModel
+    @State private var path = NavigationPath()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack(path: $path){
+            VStack{
+                Header(title: "Profile", subtitle: "")
+                Spacer()
+                Button("Logout") {
+                    viewModel.logout()
+                }
+                Spacer()
+    
+            }
+        }
     }
 }
 
 #Preview {
-    ProfileView()
+    ProfileView(viewModel: AuthenticationViewModel())
 }

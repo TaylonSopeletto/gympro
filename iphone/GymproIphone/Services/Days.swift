@@ -16,18 +16,6 @@ struct DaysResponse: Codable, Hashable {
     let exercises: [Exercise]
 }
 
-struct Exercise: Codable, Hashable {
-    let id: Int
-    let position: Int
-    let name: String
-    let series: [Series]
-}
-
-struct Series: Codable, Hashable {
-    let id: Int
-    let weight: Int
-    let repetitions: Int
-}
 
 
 

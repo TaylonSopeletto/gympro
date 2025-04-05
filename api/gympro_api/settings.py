@@ -10,9 +10,7 @@ SECRET_KEY = 'django-insecure-m7g63qll5ezs@*zk$-xxi51@4kcsi_8y7x@v=h@d(uc7=7w3c2
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
+ALLOWED_HOSTS = ['*']
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
@@ -122,6 +120,7 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "TOKEN_OBTAIN_SERIALIZER": "gympro_api.gympro_api_v1.serializers.MyTokenObtainPairSerializer",
 }
 
 

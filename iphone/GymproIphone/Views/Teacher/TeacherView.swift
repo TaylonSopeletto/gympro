@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TeacherView: View {
     
+    @Environment(\.colorScheme) var colorScheme
     @State private var responseStudents: [StudentsResponse] = []
     @State private var responseMessage = ""
     
@@ -47,10 +48,11 @@ struct TeacherView: View {
                         Spacer()
                     }
                     .frame(maxWidth: .infinity, maxHeight: 70)
-                    .background(Color.gray.opacity(0.1))
+                    .background(AppColors.cardBackgroundColor(for: colorScheme))
+                    .foregroundColor(AppColors.textColor(for: colorScheme))
                     .cornerRadius(10)
                     .padding(.horizontal)
-                    .foregroundColor(.black)
+                    
                 }
             }
             HStack{
