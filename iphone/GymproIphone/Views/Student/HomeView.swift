@@ -74,9 +74,15 @@ struct HomeView: View {
                 Spacer()
                 
                 NavigationLink(destination: AIView()){
-                    Text("AI")
-                        .font(.title)
-                        .foregroundColor(.white)
+                    VStack{
+                        Image(systemName: "apple.intelligence")
+                            .font(.title)
+                            .foregroundColor(AppColors.textColor(for: colorScheme))
+                            .padding(.bottom, 4)
+                        Text("Equipment Classifier")
+                            .foregroundColor(AppColors.textColor(for: colorScheme))
+                    }
+
                         
                 }
                 Spacer()

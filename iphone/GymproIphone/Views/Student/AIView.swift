@@ -7,8 +7,8 @@ struct AIView: View {
     @Environment(\.colorScheme) var colorScheme
     @StateObject private var handler = CameraModelHandler()
     
-    @State private var currentImage: String = "Image_6"
-    private let imageOptions = ["Image_1", "Image_6", "Image_7"]
+    @State private var currentImage: String = "000001"
+    private let imageOptions = ["000001", "000002", "000003", "000004", "000005", "000006", "000007"]
     
     var body: some View {
         VStack {
@@ -17,7 +17,7 @@ struct AIView: View {
                     Text(imageName).tag(imageName)
                 }
             }
-            .pickerStyle(SegmentedPickerStyle())
+            .pickerStyle(MenuPickerStyle())
             .padding()
 
             if let uiImage = UIImage(named: currentImage) {

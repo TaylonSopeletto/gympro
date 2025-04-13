@@ -6,13 +6,13 @@ import UIKit
 
 class CameraModelHandler: NSObject, ObservableObject {
     @Published var prediction: String = "Analyzing…"
-    private let model: TreadmillClassifier
+    private let model: GymClassifier
     private let ciContext = CIContext()
     private let targetSize = CGSize(width: 150, height: 150)
     
     override init() {
         do {
-            model = try TreadmillClassifier(configuration: MLModelConfiguration())
+            model = try GymClassifier(configuration: MLModelConfiguration())
         } catch {
             fatalError("❌ Could not load TreadmillClassifier: \(error)")
         }
@@ -55,7 +55,7 @@ class CameraModelHandler: NSObject, ObservableObject {
         ciContext.render(scaled, to: rgbBuffer)
         
         do {
-            let input = TreadmillClassifierInput(conv2d_input: rgbBuffer)
+            let input = GymClassifierInput(conv2d_input: rgbBuffer)
             let out = try model.prediction(input: input)
             
             let mlArray = out.Identity
@@ -63,7 +63,7 @@ class CameraModelHandler: NSObject, ObservableObject {
             for i in 0..<mlArray.count {
                 probs.append(mlArray[i].doubleValue)
             }
-            let labels = ["NotTreadmill", "Treadmill"]
+            let labels = ["cable_crossover_machine", "exercise_bike", "flat_bench_press", "gym_treadmill", "leg_curl_machine", "leg_extension_machine", "squat_rack"]
             let best = zip(labels, probs).max(by: { $0.1 < $1.1 })
             
             if let (label, confidence) = best {

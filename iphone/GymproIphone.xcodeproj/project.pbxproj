@@ -15,7 +15,7 @@
 		CD1D10AB2D9F6649006A9DD3 /* JwtDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1D10AA2D9F6642006A9DD3 /* JwtDecoder.swift */; };
 		CD5C94592DA5FB7300F7ADF4 /* InProgressExercises.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5C94582DA5FB5900F7ADF4 /* InProgressExercises.swift */; };
 		CD71B6492DAB11120001CE40 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD71B6482DAB110C0001CE40 /* CameraViewModel.swift */; };
-		CD71B64D2DAB22C40001CE40 /* TreadmillClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CD71B64C2DAB22C40001CE40 /* TreadmillClassifier.mlmodel */; };
+		CD71B6742DAC70BE0001CE40 /* GymClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CD71B6732DAC70BE0001CE40 /* GymClassifier.mlmodel */; };
 		CDB42C872D9B3C7B002967BC /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB42C862D9B3C7B002967BC /* Header.swift */; };
 		CDC44CE82DA17381000C3DEC /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC44CE72DA1737F000C3DEC /* Colors.swift */; };
 		CDC44CED2DA1A82C000C3DEC /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC44CEC2DA1A829000C3DEC /* TimeManager.swift */; };
@@ -53,7 +53,7 @@
 		CD1D10AA2D9F6642006A9DD3 /* JwtDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtDecoder.swift; sourceTree = "<group>"; };
 		CD5C94582DA5FB5900F7ADF4 /* InProgressExercises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InProgressExercises.swift; sourceTree = "<group>"; };
 		CD71B6482DAB110C0001CE40 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
-		CD71B64C2DAB22C40001CE40 /* TreadmillClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = TreadmillClassifier.mlmodel; sourceTree = "<group>"; };
+		CD71B6732DAC70BE0001CE40 /* GymClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GymClassifier.mlmodel; sourceTree = "<group>"; };
 		CDB42C862D9B3C7B002967BC /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		CDC44CE72DA1737F000C3DEC /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CDC44CEC2DA1A829000C3DEC /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 				CDF6253E2D978CE90007F80E /* Helpers */,
 				0C624AE22C9F3124007FD431 /* Assets.xcassets */,
 				0C624AE42C9F3124007FD431 /* Preview Content */,
-				CD71B64C2DAB22C40001CE40 /* TreadmillClassifier.mlmodel */,
+				CD71B6732DAC70BE0001CE40 /* GymClassifier.mlmodel */,
 			);
 			path = GymproIphone;
 			sourceTree = "<group>";
@@ -329,10 +329,10 @@
 				CD5C94592DA5FB7300F7ADF4 /* InProgressExercises.swift in Sources */,
 				CDC44CE82DA17381000C3DEC /* Colors.swift in Sources */,
 				CDF625492D9843DE0007F80E /* Constants.swift in Sources */,
-				CD71B64D2DAB22C40001CE40 /* TreadmillClassifier.mlmodel in Sources */,
 				CD1D10AB2D9F6649006A9DD3 /* JwtDecoder.swift in Sources */,
 				CDF625402D978CFF0007F80E /* KeychainHelper.swift in Sources */,
 				CDC44CED2DA1A82C000C3DEC /* TimeManager.swift in Sources */,
+				CD71B6742DAC70BE0001CE40 /* GymClassifier.mlmodel in Sources */,
 				CD71B6492DAB11120001CE40 /* CameraViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
