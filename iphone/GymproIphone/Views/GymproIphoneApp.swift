@@ -9,9 +9,20 @@ import SwiftUI
 
 @main
 struct GymproIphoneApp: App {
+    
+    @StateObject var appState = AppState()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(appState)
         }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .environmentObject(AppState())
     }
 }

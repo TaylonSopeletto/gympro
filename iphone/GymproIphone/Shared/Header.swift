@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Header: View {
+    @Environment(\.colorScheme) var colorScheme
     
     let title: String
     let subtitle: String
@@ -16,7 +17,7 @@ struct Header: View {
         HStack{
             VStack(alignment: .leading){
                 Text(title)
-                    .foregroundColor(Color.gray.opacity(0.5))
+                    .foregroundColor(AppColors.textColor(for: colorScheme))
                     .padding(.leading, 20)
                     .font(.title)
                     .fontWeight(.black)

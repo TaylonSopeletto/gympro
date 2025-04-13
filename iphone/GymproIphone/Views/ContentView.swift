@@ -19,7 +19,6 @@ struct ContentView: View {
             if viewModel.getRole() == "student" {
                 HomeView(viewModel: viewModel)
                     .transition(.scale)
-                  
                
             } else {
                 if viewModel.getRole() == "teacher" {
@@ -42,5 +41,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView().environmentObject(TimerManager())
+    ContentView()
+        .environmentObject(TimerManager())
+        .environmentObject(AppState())
 }

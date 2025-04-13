@@ -10,10 +10,19 @@ struct Exercise: Identifiable, Codable, Hashable {
     let position: Int
     let name: String
     let series: [Series]?
+    
+}
+
+struct InProgressExercise: Identifiable, Codable, Hashable {
+    let id: Int
+    let position: Int
+    let name: String
+    let series: [Series]?
+    let done: Bool?
 }
 
 struct Series: Identifiable, Codable, Hashable {
-    let id: Int
-    let weight: Int
-    let repetitions: Int
+    var id: Int
+    var weight: Int
+    var repetitions: Int
 }

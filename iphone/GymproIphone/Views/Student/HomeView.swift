@@ -7,23 +7,29 @@
 
 import SwiftUI
 
+struct Day: Identifiable {
+    let id: String
+    let label: String
+}
+
 struct HomeView: View {
     @ObservedObject var viewModel: AuthenticationViewModel
     @Environment(\.colorScheme) var colorScheme
-    let days = ["sunday", "monday", "tuesday", "wednesday", "thurday", "friday", "saturday"]
+    let days: [Day] = [
+        Day(id: "sun", label: "s"),
+        Day(id: "mon", label: "m"),
+        Day(id: "tue", label: "t"),
+        Day(id: "wed", label: "w"),
+        Day(id: "thu", label: "t"),
+        Day(id: "fri", label: "f"),
+        Day(id: "sat", label: "s")
+    ]
     @State private var currentWeekday = ""
     @State private var responseMessage = ""
     @State private var responseDays : [DaysResponse] = []
     @State private var dayIndex = 0
     @State private var navigateToExercises = false
     @EnvironmentObject var timerManager: TimerManager
-    
-    func getCurrentWeekday() {
-        let date = Date()
-        let calendar = Calendar.current
-        let weekdayIndex = calendar.component(.weekday, from: date) - 1
-        currentWeekday = days[weekdayIndex]
-    }
     
     func getDays() {
         DaysService.shared.get() { result in
@@ -45,28 +51,39 @@ struct HomeView: View {
             VStack {
                 Header(title: "Home", subtitle: "")
                 Spacer()
-                Text("Weekday")
+                Text("April's Second Week")
+                    .fontWeight(.bold)
                     .padding(20)
                 
                 VStack {
-                   ForEach(0..<3) { row in
-                       HStack {
-                           ForEach(days[row * 3..<min(row * 3 + 3, days.count)], id: \.self) { day in
-                               Button(action: {}) {
-                                   Text(day.prefix(3).capitalized)
-                                       .frame(width: 80, height: 80)
-                                       .background(AppColors.cardBackgroundColor(for: colorScheme))
-                                       .cornerRadius(20)
-                                       .foregroundColor(AppColors.textColor(for: colorScheme))
-                               }
-                           }
-                       }
-                   }
-               }
+                    ForEach(0..<1) { _ in
+                        HStack {
+                            ForEach(days, id: \.id) { day in
+                                Button(action: {}) {
+                                    Text(day.label.capitalized)
+                                        .font(.caption)
+                                        .frame(width: 40, height: 40)
+                                        .background(AppColors.cardBackgroundColor(for: colorScheme))
+                                        .cornerRadius(10)
+                                        .foregroundColor(AppColors.textColor(for: colorScheme))
+                                }
+                            }
+                        }
+                    }
+                }
+                Spacer()
+                
+                NavigationLink(destination: AIView()){
+                    Text("AI")
+                        .font(.title)
+                        .foregroundColor(.white)
+                        
+                }
+                Spacer()
                 
                 Text("Exercise")
+                    .fontWeight(.bold)
                     .padding(20)
-                
                 
                 HStack {
                     Button(action: {
@@ -112,6 +129,7 @@ struct HomeView: View {
                     
                 }
                 
+        
                 
                 VStack {
                     Button(action: {
@@ -127,7 +145,7 @@ struct HomeView: View {
                     .padding(30)
                     .navigationDestination(isPresented: $navigateToExercises) {
                         if responseDays.indices.contains(dayIndex) {
-                            ExercisesListView(title: responseDays[dayIndex].name, exercises: responseDays[dayIndex].exercises, weekday: responseDays[dayIndex].weekday)
+                            ExercisesListView(title: responseDays[dayIndex].name, weekday: responseDays[dayIndex].weekday, exercises: responseDays[dayIndex].exercises)
                         } else {
                            Text("Invalid day index")
                        }
@@ -139,7 +157,6 @@ struct HomeView: View {
             .padding()
             .navigationBarBackButtonHidden(true)
             .onAppear {
-                getCurrentWeekday()
                 getDays()
             }
         }
@@ -151,4 +168,5 @@ struct HomeView: View {
 #Preview {
     HomeView(viewModel: AuthenticationViewModel())
         .environmentObject(TimerManager())
+        .environmentObject(AppState())
 }

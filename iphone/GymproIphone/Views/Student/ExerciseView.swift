@@ -7,13 +7,21 @@
 
 import SwiftUI
 
+
 struct ExerciseView: View {
     
     @Environment(\.colorScheme) var colorScheme
     var exercise: Exercise
     var weekday: String
-    @Binding var doneExercises: [Exercise]
     @EnvironmentObject var timerManager: TimerManager
+    @State private var showingModal = false
+  
+    
+    init(exercise: Exercise, weekday: String) {
+        self.exercise = exercise
+        self.weekday = weekday
+       
+    }
     
     var body: some View {
         NavigationStack {
@@ -34,7 +42,7 @@ struct ExerciseView: View {
                 }
                 ForEach(Array((exercise.series ?? []).enumerated()), id: \.element.id) { (index, series) in
                     HStack {
-                        Text("Round \(index + 1)")
+                        Text("Serie \(index + 1)")
                             .padding()
                         Spacer()
                         HStack{
@@ -45,8 +53,14 @@ struct ExerciseView: View {
                             Text("\(series.weight) KG")
                         }
                         Spacer()
-                        Button(action: {}){
+                        Button(action: {
+                            showingModal = true
+                           
+                        }){
                             Image(systemName: "pencil")
+                        }
+                        .fullScreenCover(isPresented: $showingModal) {
+                            ModalView(serie: series)
                         }
             
                     }
@@ -75,7 +89,6 @@ struct ExerciseView: View {
 
 struct ExerciseView_Previews: PreviewProvider {
     struct PreviewWrapper: View {
-        @State private var doneExercises: [Exercise] = []
 
         var body: some View {
             ExerciseView(
@@ -89,10 +102,10 @@ struct ExerciseView_Previews: PreviewProvider {
                         Series(id: 3, weight: 80, repetitions: 6)
                     ]
                 ),
-                weekday: "Monday",
-                doneExercises: $doneExercises
+                weekday: "Monday"
             )
             .environmentObject(TimerManager())
+            .environmentObject(AppState())
         }
     }
 

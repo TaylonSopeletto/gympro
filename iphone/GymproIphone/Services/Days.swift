@@ -16,9 +16,6 @@ struct DaysResponse: Codable, Hashable {
     let exercises: [Exercise]
 }
 
-
-
-
 class DaysService {
     static let shared = DaysService()
 
