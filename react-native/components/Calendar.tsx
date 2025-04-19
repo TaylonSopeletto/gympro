@@ -5,7 +5,6 @@ import { cardStyle } from '@/constants/Colors'
 
 const Calendar = () => {
     const colorScheme = useColorScheme()
-
     const days = getDayNumbersInMonth(2025, 3)
 
     function getDayNumbersInMonth(year: number, month: number) {
@@ -23,7 +22,7 @@ const Calendar = () => {
                     </ThemedView>
                 )}
             </ThemedView>
-            <ThemedText style={{ textAlign: 'center', marginTop: 8, fontSize: 14 }}>View full calendar</ThemedText>
+            <ThemedText style={{ textAlign: 'right', marginTop: 8, fontSize: 14, marginRight: 8 }}>View all</ThemedText>
         </ThemedView>
     )
 }

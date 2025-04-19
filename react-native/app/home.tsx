@@ -45,6 +45,11 @@ const styles = StyleSheet.create({
         fontSize: 13
     },
     cta: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 50,
+        width: '50%',
         margin: 'auto',
         marginTop: 16,
         borderWidth: 1,
