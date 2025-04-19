@@ -5,3 +5,4 @@ ai/venv
 iphone/.DS_Store
 iphone/Pods/
 ai/dataset
+node_modules
