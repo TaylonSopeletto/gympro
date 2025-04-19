@@ -4,10 +4,9 @@ import { ThemedText } from "@/components/ThemedText"
 import { ThemedView } from "@/components/ThemedView"
 import Calendar from "@/components/Calendar"
 import { cardStyle } from '@/constants/Colors'
-
+import { useSession } from '@/ctx'
 
 const HomeScreen = () => {
-
     const colorScheme = useColorScheme()
 
     return (

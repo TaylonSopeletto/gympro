@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TextInput, StyleSheet, Image, TouchableOpacity, useColorScheme } from 'react-native';
 import { useRouter } from 'expo-router';
+import * as Keychain from 'react-native-keychain';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { textInputStyle } from '@/constants/Colors';
+import { useSession } from '@/ctx';
 
 
 const LoginScreen = () => {
+    const { signIn } = useSession();
     const router = useRouter();
     const colorScheme = useColorScheme()
     const [username, setUsername] = useState('');
@@ -38,7 +41,10 @@ const LoginScreen = () => {
                     placeholderTextColor="#666"
                 />
                 <ThemedText style={styles.forgotPassword}>Forgot password?</ThemedText>
-                <TouchableOpacity style={styles.button} onPress={() => { router.push('home') }}>
+                <TouchableOpacity style={styles.button} onPress={async () => {
+                    signIn();
+                    router.replace('/');
+                }}>
                     <ThemedText style={styles.buttonText}>Login</ThemedText>
                 </TouchableOpacity>
             </ThemedView>
