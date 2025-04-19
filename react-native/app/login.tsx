@@ -1,26 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import { View, TextInput, StyleSheet, Image, TouchableOpacity, useColorScheme } from 'react-native';
+import { View, TextInput, StyleSheet, Image, TouchableOpacity, useColorScheme, Alert } from 'react-native';
+import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
-import * as Keychain from 'react-native-keychain';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { textInputStyle } from '@/constants/Colors';
 import { useSession } from '@/ctx';
+import { loginService } from '@/services/fetchUser';
 
 
 const LoginScreen = () => {
-    const { signIn } = useSession();
     const router = useRouter();
+    const { signIn } = useSession();
     const colorScheme = useColorScheme()
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState<string>('')
+
+    const handleLogin = () => {
+        loginService({ email: username, password }).then(res => {
+            signIn(res.data.access);
+            router.replace('/');
+        }).catch(e => {
+            setError(JSON.stringify(e.message))
+        })
+    }
 
     return (
         <>
             <ThemedView style={styles.container}>
                 <View style={styles.logo}>
-                    {colorScheme === 'light' && <Image source={require('@/assets/images/gympro-logo-light.png')} style={styles.logoImage} />}
-                    {colorScheme === 'dark' && <Image source={require('@/assets/images/gympro-logo-dark.png')} style={styles.logoImage} />}
+                    <Image source={colorScheme === 'light' ?
+                        require('@/assets/images/gympro-logo-light.png')
+                        : require('@/assets/images/gympro-logo-dark.png')}
+                        style={styles.logoImage}
+                    />
                     <ThemedText style={styles.logoText}>Gympro</ThemedText>
                 </View>
                 <ThemedText style={styles.text}>E-mail:</ThemedText>
@@ -30,6 +43,7 @@ const LoginScreen = () => {
                     value={username}
                     onChangeText={setUsername}
                     placeholderTextColor="#666"
+                    autoCapitalize="none"
                 />
                 <ThemedText style={styles.text}>Password:</ThemedText>
                 <TextInput
@@ -42,11 +56,11 @@ const LoginScreen = () => {
                 />
                 <ThemedText style={styles.forgotPassword}>Forgot password?</ThemedText>
                 <TouchableOpacity style={styles.button} onPress={async () => {
-                    signIn();
-                    router.replace('/');
+                    handleLogin()
                 }}>
                     <ThemedText style={styles.buttonText}>Login</ThemedText>
                 </TouchableOpacity>
+                <ThemedText>{error}</ThemedText>
             </ThemedView>
         </>
     );
@@ -86,7 +100,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         paddingHorizontal: 20,
         borderRadius: 10,
-
     },
     button: {
         display: 'flex',
@@ -99,7 +112,6 @@ const styles = StyleSheet.create({
         width: '50%',
         marginTop: 30,
         marginBottom: 120
-
     },
     forgotPassword: {
         marginVertical: 20
