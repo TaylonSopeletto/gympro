@@ -5,6 +5,8 @@ import { ThemedText } from "./ThemedText"
 import { useDays } from "@/hooks/useDays"
 import { cardStyle } from "@/constants/Colors";
 import { useRouter } from "expo-router";
+import { useDispatch } from "react-redux";
+import { updateExerciseList } from '@/redux/userSlice';
 
 interface Props {
     isOpened: boolean;
@@ -12,9 +14,10 @@ interface Props {
 }
 
 const ExerciseSelectionModal = (props: Props) => {
+    const dispatch = useDispatch();
+    const { days } = useDays()
     const router = useRouter();
     const colorScheme = useColorScheme()
-    const { days } = useDays()
     const [currentDay, setCurrentDay] = React.useState<number>(0)
 
     return (
@@ -35,6 +38,7 @@ const ExerciseSelectionModal = (props: Props) => {
                         </ThemedView>
                         <Button title="Confirm" onPress={() => {
                             router.push('/exercise')
+                            dispatch(updateExerciseList(days[currentDay].exercises.map(item => ({ ...item, isDone: false }))))
                             props.onClose()
                         }} />
                     </ThemedView>}
