@@ -4,12 +4,16 @@ import { ThemedText } from "@/components/ThemedText"
 import { ThemedView } from "@/components/ThemedView"
 import Calendar from "@/components/Calendar"
 import { cardStyle } from '@/constants/Colors'
+import { useState } from 'react'
+import ExerciseSelectionModal from '@/components/ExerciseSelectionModal'
 
 const HomeScreen = () => {
     const colorScheme = useColorScheme()
+    const [modalVisible, setModalVisible] = useState(false);
 
     return (
         <ThemedView style={{ height: '100%' }}>
+            <ExerciseSelectionModal isOpened={modalVisible} onClose={() => setModalVisible(false)} />
             <Header />
             <Calendar />
             <ThemedView style={{ ...styles.classifier, ...cardStyle[colorScheme ?? 'light'] }}>
@@ -17,10 +21,11 @@ const HomeScreen = () => {
                 <ThemedText style={styles.classifierText}>Scan an equipment and get to know it is name
                     and what exercises can be done with it
                 </ThemedText>
-
             </ThemedView>
-            <TouchableOpacity style={styles.cta}>
-                <ThemedText style={styles.ctaText}>Workout</ThemedText>
+            <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.cta}>
+                <ThemedText style={styles.ctaText} >
+                    Workout
+                </ThemedText>
             </TouchableOpacity>
         </ThemedView>
     )
@@ -60,7 +65,23 @@ const styles = StyleSheet.create({
     },
     ctaText: {
         fontSize: 14
-    }
+    },
+    modalOverlay: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modalContent: {
+        width: 300,
+        padding: 20,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        alignItems: 'center',
+    },
+    modalText: {
+        marginBottom: 15,
+    },
 })
 
 export default HomeScreen
