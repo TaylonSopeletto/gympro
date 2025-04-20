@@ -11,7 +11,6 @@ const ExerciseScreen = () => {
     const colorScheme = useColorScheme()
     const exercises = useSelector(selectExercises);
     const router = useRouter();
-    const dispatch = useDispatch();
 
     return (
         <ThemedView style={{ height: '100%' }}>
@@ -21,7 +20,12 @@ const ExerciseScreen = () => {
                 {exercises.map((exercise, index) =>
                     <TouchableOpacity
                         onPress={() => {
-                            router.replace('/serie')
+                            router.push({
+                                pathname: '/(app)/serie',
+                                params: {
+                                    exerciseId: exercise.id
+                                }
+                            })
                         }}
                         key={index}
                         style={{

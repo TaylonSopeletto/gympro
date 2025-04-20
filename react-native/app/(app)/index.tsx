@@ -6,6 +6,8 @@ import { ThemedView } from "@/components/ThemedView"
 import Calendar from "@/components/Calendar"
 import { cardStyle } from '@/constants/Colors'
 import { useState } from 'react'
+import { SymbolView } from 'expo-symbols'
+import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 
 const HomeScreen = () => {
     const colorScheme = useColorScheme()
@@ -17,7 +19,13 @@ const HomeScreen = () => {
             <Header />
             <Calendar />
             <ThemedView style={{ ...styles.classifier, ...cardStyle[colorScheme ?? 'light'] }}>
-                <ThemedText style={styles.classifierTitle}>Equipment Classifier</ThemedText>
+                <ThemedView style={styles.classifierTitle}>
+                    <ThemedText>Equipment Classifier</ThemedText>
+                    <MaterialIcons
+                        name={'arrow-right-alt'}
+                        size={20} color={colorScheme === 'light' ? 'black' : 'white'}
+                    />
+                </ThemedView>
                 <ThemedText style={styles.classifierText}>
                     Scan equipment to see its name and related exercises.
                 </ThemedText>
@@ -41,13 +49,19 @@ const styles = StyleSheet.create({
         paddingVertical: 16
     },
     classifierTitle: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
         fontWeight: 'bold',
         textAlign: 'center',
-        marginBottom: 16
+        marginBottom: 16,
+        backgroundColor: 'transparent'
     },
     classifierText: {
-        textAlign: 'center',
-        fontSize: 13
+        textAlign: 'left',
+        fontSize: 13,
     },
     cta: {
         display: 'flex',
