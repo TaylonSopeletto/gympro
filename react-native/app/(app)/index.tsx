@@ -1,11 +1,11 @@
 import { StyleSheet, TouchableOpacity, useColorScheme } from 'react-native'
+import ExerciseSelectionModal from '@/components/ExerciseSelectionModal'
 import Header from "@/components/Header"
 import { ThemedText } from "@/components/ThemedText"
 import { ThemedView } from "@/components/ThemedView"
 import Calendar from "@/components/Calendar"
 import { cardStyle } from '@/constants/Colors'
 import { useState } from 'react'
-import ExerciseSelectionModal from '@/components/ExerciseSelectionModal'
 
 const HomeScreen = () => {
     const colorScheme = useColorScheme()
@@ -18,8 +18,8 @@ const HomeScreen = () => {
             <Calendar />
             <ThemedView style={{ ...styles.classifier, ...cardStyle[colorScheme ?? 'light'] }}>
                 <ThemedText style={styles.classifierTitle}>Equipment Classifier</ThemedText>
-                <ThemedText style={styles.classifierText}>Scan an equipment and get to know it is name
-                    and what exercises can be done with it
+                <ThemedText style={styles.classifierText}>
+                    Scan equipment to see its name and related exercises.
                 </ThemedText>
             </ThemedView>
             <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.cta}>

@@ -23,6 +23,7 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
+
         updateExerciseList: (state, action: PayloadAction<IExercise[]>) => {
             state.exercises = action.payload
         }
