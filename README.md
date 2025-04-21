@@ -1,4 +1,6 @@
-![Group 129](https://github.com/user-attachments/assets/192203af-8288-4664-90f4-88feca51d9c7)
+
+![Group 131](https://github.com/user-attachments/assets/2f4f27c9-0cd5-479a-8c1f-6b59534c02bd)
+
 
 ## About the project
 
