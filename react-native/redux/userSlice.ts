@@ -1,21 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+interface ISerie {
+    id: number;
+    weight: number;
+    repetitions: number;
+}
+
 interface IExercise {
     id: number;
     name: string;
     isDone: boolean;
-    series: {
-        id: number;
-        weight: number;
-        repetitions: number;
-    }[]
+    series: ISerie[]
 }
 
 interface UserState {
+    currentSerie: ISerie | null;
     exercises: IExercise[];
 }
 
 const initialState: UserState = {
+    currentSerie: null,
     exercises: []
 };
 
@@ -23,8 +27,26 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
+        setCurrentSerie: (state, action: PayloadAction<ISerie>) => {
+            state.currentSerie = action.payload
+        },
         updateExerciseList: (state, action: PayloadAction<IExercise[]>) => {
             state.exercises = action.payload
+        },
+        toggleExercise: (state, action: PayloadAction<{ exerciseId: number }>) => {
+            const updatedExercises = state.exercises.map(exercise => {
+                if (exercise.id === action.payload.exerciseId) {
+                    return {
+                        ...exercise,
+                        isDone: !exercise.isDone
+                    }
+                }
+
+                return exercise
+            })
+
+            state.exercises = updatedExercises
+
         },
         updateExerciseSerie: (
             state,
@@ -61,6 +83,7 @@ const userSlice = createSlice({
     },
 });
 
-export const { updateExerciseList, updateExerciseSerie } = userSlice.actions;
+export const { updateExerciseList, updateExerciseSerie, toggleExercise, setCurrentSerie } = userSlice.actions;
 export const selectExercises = (state: { user: { exercises: IExercise[] } }) => state.user.exercises;
+export const selectCurrentSerie = (state: { user: { currentSerie: ISerie } }) => state.user.currentSerie;
 export default userSlice.reducer;

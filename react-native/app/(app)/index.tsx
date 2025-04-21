@@ -6,7 +6,6 @@ import { ThemedView } from "@/components/ThemedView"
 import Calendar from "@/components/Calendar"
 import { cardStyle } from '@/constants/Colors'
 import { useState } from 'react'
-import { SymbolView } from 'expo-symbols'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 
 const HomeScreen = () => {

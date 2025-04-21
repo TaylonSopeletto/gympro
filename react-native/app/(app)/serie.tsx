@@ -1,31 +1,30 @@
 import { TouchableOpacity, StyleSheet, useColorScheme } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { selectExercises } from "@/redux/userSlice";
+import { setCurrentSerie } from "@/redux/userSlice";
 import Header from "@/components/Header"
 import { ThemedText } from "@/components/ThemedText"
 import { ThemedView } from "@/components/ThemedView"
 import { cardStyle } from "@/constants/Colors";
 import { useState } from "react";
 import SerieUpdateModal from "@/components/SerieUpdateModal";
+import { useExercises } from "@/hooks/useExercises";
 
 const SerieScreen = () => {
-    const exercises = useSelector(selectExercises);
-    const { exerciseId } = useLocalSearchParams();
-    const [repetitions, setRepetitions] = useState<string>('')
-    const [weight, setWeight] = useState<string>('')
-    const [serieId, setSerieId] = useState<string>('')
-    const [isModalOpened, setIsModalOpened] = useState<boolean>(false)
+
+    const dispatch = useDispatch();
     const router = useRouter();
+    const { exerciseId } = useLocalSearchParams();
     const colorScheme = useColorScheme()
-    const currentExerciseSeries = exercises.find(item => item.id === Number(exerciseId))?.series
+    const { series } = useExercises({ exerciseId: String(exerciseId) })
+    const [isModalOpened, setIsModalOpened] = useState<boolean>(false)
 
     return (
         <ThemedView style={{ height: '100%' }}>
             <Header />
             <ThemedText style={styles.title}>Todo</ThemedText>
             <ThemedView style={styles.exercises}>
-                {currentExerciseSeries?.map((serie, index) =>
+                {series?.map((serie, index) =>
                     <TouchableOpacity
                         key={index}
                         style={{
@@ -36,9 +35,7 @@ const SerieScreen = () => {
                         <ThemedText>{serie.repetitions}x - {serie.weight}KG</ThemedText>
                         <ThemedText onPress={() => {
                             setIsModalOpened(true)
-                            setWeight(String(serie.weight))
-                            setRepetitions(String(serie.repetitions))
-                            setSerieId(String(serie.id))
+                            dispatch(setCurrentSerie(serie))
                         }}>
                             Edit
                         </ThemedText>
@@ -58,14 +55,9 @@ const SerieScreen = () => {
                 <ThemedText>Back</ThemedText>
             </TouchableOpacity>
             <SerieUpdateModal
-                serieId={Number(serieId)}
                 exerciseId={Number(exerciseId)}
                 isOpened={isModalOpened}
                 onClose={() => setIsModalOpened(false)}
-                weight={weight}
-                setWeight={setWeight}
-                repetitions={repetitions}
-                setRepetitions={setRepetitions}
             />
         </ThemedView>
     )
