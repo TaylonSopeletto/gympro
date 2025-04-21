@@ -6,6 +6,7 @@ interface Props {
 }
 
 export const useExercises = (props: Props) => {
+
     const exercises = useSelector(selectExercises);
     const currentExerciseSeries = exercises.find(item => item.id === Number(props.exerciseId))?.series ?? []
 

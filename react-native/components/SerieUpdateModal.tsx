@@ -18,8 +18,13 @@ const SerieUpdateModal = (props: Props) => {
     const colorScheme = useColorScheme()
     const dispatch = useDispatch();
 
-    const [repetitions, setRepetitions] = useState<string>(String(serie.repetitions))
-    const [weight, setWeight] = useState<string>(String(serie.weight))
+    const [repetitions, setRepetitions] = useState<string>()
+    const [weight, setWeight] = useState<string>()
+
+    useEffect(() => {
+        setRepetitions(String(serie.repetitions))
+        setWeight(String(serie.weight))
+    }, [props.isOpened])
 
     return (
         <Modal

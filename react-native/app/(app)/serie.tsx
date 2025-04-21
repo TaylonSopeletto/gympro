@@ -11,7 +11,6 @@ import SerieUpdateModal from "@/components/SerieUpdateModal";
 import { useExercises } from "@/hooks/useExercises";
 
 const SerieScreen = () => {
-
     const dispatch = useDispatch();
     const router = useRouter();
     const { exerciseId } = useLocalSearchParams();
