@@ -3,7 +3,7 @@
 ## About the project
 Gympro is an intelligent fitness assistant designed to enhance workout routines through real-time exercise guidance and smart equipment scanning.
 
-⚠️ This is not a real project. The goal is to explore different technologies and programming languages to gain a better understanding of a full web application.
+⚠️ This is not a real project. The goal is to explore different technologies and programming languages to gain a better understanding of a full web application an artifitial inteligence
 
 ## Overview
 
