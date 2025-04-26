@@ -1,8 +1,9 @@
 api/mock_api/node_modules
 api/env
-ai/venv
+equipment-detector/venv
 .DS_Store
 iphone/.DS_Store
 iphone/Pods/
-ai/dataset
+equipment-detector/dataset/train
+equipment-detector/dataset/val
 node_modules
