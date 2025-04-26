@@ -7,4 +7,5 @@ Gympro is an intelligent fitness assistant designed to enhance workout routines 
 
 ## Overview
 
-![Group 130](https://github.com/user-attachments/assets/0d5a4429-5d69-41f5-8080-be84b8601e78)
+
+![Group 132](https://github.com/user-attachments/assets/b3be0686-eeac-4d97-8e89-e986830a6cb7)
