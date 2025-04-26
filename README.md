@@ -1,6 +1,5 @@
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/2f4f27c9-0cd5-479a-8c1f-6b59534c02bd" alt="Group 131">
-</p>
+![Group 131](https://github.com/user-attachments/assets/073ff3e1-2301-41a2-a3c6-56665566e816)
+
 
 ## About the project
 
