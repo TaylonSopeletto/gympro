@@ -4,7 +4,7 @@
 
 ## About the project
 
-Gympro is an intelligent fitness assistant designed to enhance workout routines through real-time exercise guidance and smart equipment scanning. The system combines computer vision and machine learning to track exercise form, provide personalized feedback, and automatically recognize gym equipment for accurate workout logging.
+Gympro is an intelligent fitness assistant designed to enhance workout routines through real-time exercise guidance and smart equipment scanning.
 
 ## Overview
 
