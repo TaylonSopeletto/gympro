@@ -20,8 +20,8 @@ const SerieUpdateModal = (props: Props) => {
     const [weight, setWeight] = useState<string>()
 
     useEffect(() => {
-        setRepetitions(String(serie.repetitions))
-        setWeight(String(serie.weight))
+        setRepetitions(String(serie?.repetitions))
+        setWeight(String(serie?.weight))
     }, [props.isOpened])
 
     return (

@@ -7,6 +7,8 @@ import { ThemedView } from "@/components/ThemedView"
 import Calendar from "@/components/Calendar"
 import { cardStyle } from '@/constants/Colors'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
+import { ThemedOpacity } from '@/components/ThemedOpacity'
+
 
 const HomeScreen = () => {
     const colorScheme = useColorScheme()
@@ -15,30 +17,34 @@ const HomeScreen = () => {
     return (
         <ThemedView style={{ height: '100%' }}>
             <ExerciseSelectionModal isOpened={modalVisible} onClose={() => setModalVisible(false)} />
-            <Header />
+            <Header title='' subtitle='' />
             <Calendar />
-            <TouchableOpacity style={{ ...styles.classifier, ...cardStyle[colorScheme ?? 'light'] }}>
+            <ThemedOpacity
+                style={styles.classifier}
+            >
                 <ThemedView style={styles.classifierTitle}>
                     <MaterialIcons
                         name={'qr-code-scanner'}
-                        size={20} color={colorScheme === 'light' ? 'black' : 'white'}
+                        size={20}
+                        color={colorScheme === 'light' ? 'black' : 'white'}
                     />
                     <ThemedText style={{ marginRight: 'auto' }}>Equipment Classifier</ThemedText>
                     <MaterialIcons
                         name={'arrow-forward'}
-                        size={20} color={colorScheme === 'light' ? 'black' : 'white'}
+                        size={20}
+                        color={colorScheme === 'light' ? 'black' : 'white'}
                     />
                 </ThemedView>
                 <ThemedText style={styles.classifierText}>
                     Scan equipment to see its name and related exercises.
                 </ThemedText>
-            </TouchableOpacity>
+            </ThemedOpacity>
 
-            <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.cta}>
+            <ThemedOpacity onPress={() => setModalVisible(true)} style={styles.cta}>
                 <ThemedText style={styles.ctaText} >
                     Workout
                 </ThemedText>
-            </TouchableOpacity>
+            </ThemedOpacity>
         </ThemedView>
     )
 }

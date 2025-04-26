@@ -1,26 +1,44 @@
 import { ThemedView } from "./ThemedView"
-import { Button, Image, StyleSheet, TouchableOpacity } from 'react-native'
-import { useRouter } from 'expo-router';
+import { Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { useSession } from "@/ctx";
+import { ThemedText } from "./ThemedText";
 
-const Header = () => {
-    const router = useRouter();
+interface Props {
+    title: string;
+    subtitle: string;
+}
+
+const Header = (props: Props) => {
     const { signOut } = useSession();
 
     return (
-        <ThemedView>
+        <ThemedView style={styles.container}>
+            <ThemedView>
+                <ThemedText type="subtitle">{props.title}</ThemedText>
+                <ThemedText>{props.subtitle}</ThemedText>
+            </ThemedView>
             <TouchableOpacity onPress={() => signOut()}>
-                <Image source={{ uri: 'https://avatars.githubusercontent.com/u/42319708?v=4' }} style={styles.profilePicture} />
+                <Image
+                    source={{ uri: 'https://avatars.githubusercontent.com/u/42319708?v=4' }}
+                    style={styles.profilePicture}
+                />
             </TouchableOpacity>
         </ThemedView>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        paddingTop: 80,
+        paddingBottom: 20,
+        paddingHorizontal: 40,
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+
+    },
     profilePicture: {
-        marginTop: 80,
-        marginLeft: 'auto',
-        marginRight: 30,
         height: 40,
         width: 40,
         borderRadius: 50

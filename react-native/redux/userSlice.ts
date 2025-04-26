@@ -6,7 +6,7 @@ interface ISerie {
     repetitions: number;
 }
 
-interface IExercise {
+export interface IExercise {
     id: number;
     name: string;
     isDone: boolean;

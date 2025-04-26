@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { TouchableOpacity, StyleSheet, useColorScheme } from "react-native";
 import { useDispatch } from "react-redux";
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -6,7 +7,6 @@ import Header from "@/components/Header"
 import { ThemedText } from "@/components/ThemedText"
 import { ThemedView } from "@/components/ThemedView"
 import { cardStyle } from "@/constants/Colors";
-import { useState } from "react";
 import SerieUpdateModal from "@/components/SerieUpdateModal";
 import { useExercises } from "@/hooks/useExercises";
 
@@ -15,19 +15,19 @@ const SerieScreen = () => {
     const router = useRouter();
     const { exerciseId } = useLocalSearchParams();
     const colorScheme = useColorScheme()
-    const { series } = useExercises({ exerciseId: String(exerciseId) })
+    const { series, getExerciseById } = useExercises({ exerciseId: String(exerciseId) })
     const [isModalOpened, setIsModalOpened] = useState<boolean>(false)
 
     return (
         <ThemedView style={{ height: '100%' }}>
-            <Header />
+            <Header title={getExerciseById(String(exerciseId))?.name ?? ''} subtitle="Saturday" />
             <ThemedText style={styles.title}>Todo</ThemedText>
-            <ThemedView style={styles.exercises}>
+            <ThemedView style={styles.series}>
                 {series?.map((serie, index) =>
                     <TouchableOpacity
                         key={index}
                         style={{
-                            ...styles.exercise,
+                            ...styles.serie,
                             ...cardStyle[colorScheme ?? 'light']
                         }} >
                         <ThemedText>Serie {index + 1}</ThemedText>
@@ -71,14 +71,14 @@ const styles = StyleSheet.create({
         marginHorizontal: 'auto',
         marginTop: 'auto'
     },
-    exercises: {
+    series: {
         display: 'flex',
         flexDirection: 'column',
         gap: 10,
         width: '80%',
         marginHorizontal: 'auto',
     },
-    exercise: {
+    serie: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',

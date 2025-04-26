@@ -16,11 +16,12 @@ const ExerciseScreen = () => {
 
     return (
         <ThemedView style={{ height: '100%' }}>
-            <Header />
+            <Header title='Exercises' subtitle="Saturday" />
             <ThemedText style={styles.title}>Todo</ThemedText>
             <ThemedView style={styles.exercises}>
                 {exercises.map((exercise, index) =>
                     <TouchableOpacity
+                        key={index}
                         onPress={() => {
                             router.push({
                                 pathname: '/(app)/serie',
@@ -29,7 +30,7 @@ const ExerciseScreen = () => {
                                 }
                             })
                         }}
-                        key={index}
+
                         style={{
                             ...styles.exercise,
                             ...cardStyle[colorScheme ?? 'light']
