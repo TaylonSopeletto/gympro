@@ -33,9 +33,15 @@ const ExerciseScreen = () => {
 
                         style={styles.exercise}>
                         <ThemedText>{exercise.name}</ThemedText>
-                        <TouchableOpacity onPress={() => dispatch(toggleExercise({ exerciseId: exercise.id }))}>
+                        <TouchableOpacity
+                            onPress={() => dispatch(toggleExercise({
+                                exerciseId: exercise.id
+                            }))}>
                             <ThemedIcon
-                                name={exercise.isDone ? 'check-circle' : 'check-circle-outline'}
+                                name={exercise.isDone ?
+                                    'check-circle' :
+                                    'check-circle-outline'
+                                }
                                 size={20}
                                 color={'green'}
                             />
@@ -43,8 +49,18 @@ const ExerciseScreen = () => {
                     </ThemedTouchable>
                 )}
             </ThemedView>
-            <ThemedCta style={{ marginTop: 20, marginBottom: 50 }} onPress={() => router.replace('/')}>
-                <ThemedText lightColor="#fff" darkColor="#000">Stop</ThemedText>
+            <ThemedCta
+                style={{
+                    marginTop: 20,
+                    marginBottom: 50
+                }}
+                onPress={() => router.replace('/')}
+            >
+                <ThemedText
+                    lightColor="#fff"
+                    darkColor="#000">
+                    Stop
+                </ThemedText>
             </ThemedCta>
         </ThemedView>
     )

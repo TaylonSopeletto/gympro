@@ -14,7 +14,10 @@ const HomeScreen = () => {
 
     return (
         <ThemedView style={{ height: '100%', paddingHorizontal: 40 }}>
-            <ExerciseSelectionModal isOpened={modalVisible} onClose={() => setModalVisible(false)} />
+            <ExerciseSelectionModal
+                isOpened={modalVisible}
+                onClose={() => setModalVisible(false)}
+            />
             <Header title='Taylon Sopeletto' subtitle='Saturday' />
             <Calendar />
             <ThemedTouchable
@@ -22,7 +25,9 @@ const HomeScreen = () => {
             >
                 <ThemedView style={styles.classifierTitle}>
                     <ThemedIcon name="qr-code-scanner" size={20} />
-                    <ThemedText style={{ marginRight: 'auto' }}>Equipment Classifier</ThemedText>
+                    <ThemedText style={{ marginRight: 'auto' }}>
+                        Equipment Classifier
+                    </ThemedText>
                     <ThemedIcon name="arrow-forward" size={20} />
                 </ThemedView>
                 <ThemedText style={styles.classifierText}>
@@ -30,7 +35,12 @@ const HomeScreen = () => {
                 </ThemedText>
             </ThemedTouchable>
 
-            <ThemedCta style={{ marginTop: 20, marginBottom: 50 }} onPress={() => setModalVisible(true)}>
+            <ThemedCta
+                style={{
+                    marginTop: 20,
+                    marginBottom: 50
+                }}
+                onPress={() => setModalVisible(true)}>
                 <ThemedText lightColor='#fff' darkColor='#000'>
                     Workout
                 </ThemedText>

@@ -29,18 +29,33 @@ const ExerciseSelectionModal = (props: Props) => {
         >
             <ThemedView style={styles.modalOverlay}>
                 {days?.length > 0 &&
-                    <ThemedView style={{ ...styles.modalContent, ...cardStyle[colorScheme ?? 'light'] }}>
-                        <ThemedText style={styles.modalText}>Select the exercise:</ThemedText>
+                    <ThemedView style={{
+                        ...styles.modalContent,
+                        ...cardStyle[colorScheme ?? 'light']
+                    }}>
+                        <ThemedText style={styles.modalText}>
+                            Select the exercise:
+                        </ThemedText>
                         <ThemedView style={styles.exercisePicker}>
-                            <Button title="<" onPress={() => setCurrentDay(currentDay - 1)}></Button>
+                            <Button
+                                title="<"
+                                onPress={() => setCurrentDay(currentDay - 1)}>
+                            </Button>
                             <ThemedText>{days[currentDay]?.name}</ThemedText>
-                            <Button title=">" onPress={() => setCurrentDay(currentDay + 1)}></Button>
+                            <Button title=">"
+                                onPress={() => setCurrentDay(currentDay + 1)}>
+                            </Button>
                         </ThemedView>
-                        <Button title="Confirm" onPress={() => {
-                            router.push('/exercise')
-                            dispatch(updateExerciseList(days[currentDay].exercises.map(item => ({ ...item, isDone: false }))))
-                            props.onClose()
-                        }} />
+                        <Button
+                            title="Confirm"
+                            onPress={() => {
+                                router.push('/exercise')
+                                dispatch(updateExerciseList(days[currentDay].exercises.map(item => ({
+                                    ...item,
+                                    isDone: false
+                                }))))
+                                props.onClose()
+                            }} />
                     </ThemedView>}
             </ThemedView>
         </Modal>

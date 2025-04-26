@@ -20,7 +20,9 @@ const SerieScreen = () => {
 
     return (
         <ThemedView style={{ height: '100%', paddingHorizontal: 40 }}>
-            <Header title={getExerciseById(String(exerciseId))?.name ?? ''} subtitle="Saturday" />
+            <Header
+                title={getExerciseById(String(exerciseId))?.name ?? ''}
+                subtitle="Saturday" />
             <ThemedText style={styles.title}>Todo</ThemedText>
             <ThemedView style={styles.series}>
                 {series?.map((serie, index) =>
@@ -28,7 +30,9 @@ const SerieScreen = () => {
                         key={index}
                         style={styles.serie} >
                         <ThemedText>Serie {index + 1}</ThemedText>
-                        <ThemedText>{serie.repetitions}x - {serie.weight}KG</ThemedText>
+                        <ThemedText>
+                            {serie.repetitions}x - {serie.weight}KG
+                        </ThemedText>
                         <ThemedText onPress={() => {
                             setIsModalOpened(true)
                             dispatch(setCurrentSerie(serie))
@@ -38,8 +42,16 @@ const SerieScreen = () => {
                     </ThemedTouchable>
                 )}
             </ThemedView>
-            <ThemedCta style={{ marginTop: 20, marginBottom: 50 }} onPress={() => router.replace('/exercise')}>
-                <ThemedText lightColor="#fff" darkColor="#333">Back</ThemedText>
+            <ThemedCta style={{
+                marginTop: 20,
+                marginBottom: 50
+            }}
+                onPress={() => router.replace('/exercise')}>
+                <ThemedText
+                    lightColor="#fff"
+                    darkColor="#333">
+                    Back
+                </ThemedText>
             </ThemedCta>
             <SerieUpdateModal
                 exerciseId={Number(exerciseId)}

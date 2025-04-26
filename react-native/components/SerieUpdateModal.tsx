@@ -32,8 +32,14 @@ const SerieUpdateModal = (props: Props) => {
             onRequestClose={() => props.onClose()}
         >
             <ThemedView style={styles.modalOverlay}>
-                <ThemedView style={{ ...styles.modalContent, ...cardStyle[colorScheme ?? 'light'] }}>
-                    <ThemedText style={styles.modalText}>Update serie:</ThemedText>
+                <ThemedView
+                    style={{
+                        ...styles.modalContent,
+                        ...cardStyle[colorScheme ?? 'light']
+                    }}>
+                    <ThemedText style={styles.modalText}>
+                        Update serie:
+                    </ThemedText>
                     <TextInput
                         placeholder="repetitions"
                         value={repetitions}
