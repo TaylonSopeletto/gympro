@@ -11,7 +11,8 @@ The equipment detector is a tensorflow model that predict which equipment the us
 ## Executing
 
 You will need a dataset of images for traininig and evaluation the model
-The folder structure on the root of /equipment-detector should look like this:
+The folder struture should look like this:
+
 - dataset/train: around 150 images of each equipment
 - dataset/val: around 30 images of each equipment
 
