@@ -5,11 +5,6 @@ Gympro is an intelligent fitness assistant designed to enhance workout routines 
 
 ⚠️ This is not a real project. The goal is to explore different technologies and programming languages to gain a better understanding of a full web application an artifitial inteligence
 
-## Overview
-
-![Group 132 (1)](https://github.com/user-attachments/assets/561004af-f250-4b68-b2cc-c19ff7aaa70a)
-
-
 ## Folder structure
 
 | Name  | Description | Action |
@@ -19,3 +14,6 @@ Gympro is an intelligent fitness assistant designed to enhance workout routines 
 | iphone  | IOS app developed with SwiftUI  | [Read more](https://github.com/TaylonSopeletto/gympro/tree/main/iphone)
 | react-native  | Android/IOS app developed with ReactNative | [Read more](https://github.com/TaylonSopeletto/gympro/tree/main/react-native)
 
+## Mobile app
+
+![Group 132 (1)](https://github.com/user-attachments/assets/561004af-f250-4b68-b2cc-c19ff7aaa70a)
