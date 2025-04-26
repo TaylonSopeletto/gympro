@@ -1,57 +1,46 @@
 import { useState } from 'react'
-import { StyleSheet, TouchableOpacity, useColorScheme } from 'react-native'
+import { StyleSheet } from 'react-native'
 import ExerciseSelectionModal from '@/components/ExerciseSelectionModal'
 import Header from "@/components/Header"
 import { ThemedText } from "@/components/ThemedText"
 import { ThemedView } from "@/components/ThemedView"
 import Calendar from "@/components/Calendar"
-import { cardStyle } from '@/constants/Colors'
-import MaterialIcons from '@expo/vector-icons/MaterialIcons'
-import { ThemedOpacity } from '@/components/ThemedOpacity'
-
+import { ThemedTouchable } from '@/components/ThemedTouchable'
+import { ThemedCta } from '@/components/ThemedCta'
+import { ThemedIcon } from '@/components/ThemedIcon'
 
 const HomeScreen = () => {
-    const colorScheme = useColorScheme()
     const [modalVisible, setModalVisible] = useState(false);
 
     return (
-        <ThemedView style={{ height: '100%' }}>
+        <ThemedView style={{ height: '100%', paddingHorizontal: 40 }}>
             <ExerciseSelectionModal isOpened={modalVisible} onClose={() => setModalVisible(false)} />
-            <Header title='' subtitle='' />
+            <Header title='Taylon Sopeletto' subtitle='Saturday' />
             <Calendar />
-            <ThemedOpacity
+            <ThemedTouchable
                 style={styles.classifier}
             >
                 <ThemedView style={styles.classifierTitle}>
-                    <MaterialIcons
-                        name={'qr-code-scanner'}
-                        size={20}
-                        color={colorScheme === 'light' ? 'black' : 'white'}
-                    />
+                    <ThemedIcon name="qr-code-scanner" size={20} />
                     <ThemedText style={{ marginRight: 'auto' }}>Equipment Classifier</ThemedText>
-                    <MaterialIcons
-                        name={'arrow-forward'}
-                        size={20}
-                        color={colorScheme === 'light' ? 'black' : 'white'}
-                    />
+                    <ThemedIcon name="arrow-forward" size={20} />
                 </ThemedView>
                 <ThemedText style={styles.classifierText}>
                     Scan equipment to see its name and related exercises.
                 </ThemedText>
-            </ThemedOpacity>
+            </ThemedTouchable>
 
-            <ThemedOpacity onPress={() => setModalVisible(true)} style={styles.cta}>
-                <ThemedText style={styles.ctaText} >
+            <ThemedCta style={{ marginTop: 20, marginBottom: 50 }} onPress={() => setModalVisible(true)}>
+                <ThemedText lightColor='#fff' darkColor='#000'>
                     Workout
                 </ThemedText>
-            </ThemedOpacity>
+            </ThemedCta>
         </ThemedView>
     )
 }
 
 const styles = StyleSheet.create({
     classifier: {
-        maxWidth: '80%',
         margin: 'auto',
         marginTop: 48,
         borderRadius: 15,
@@ -72,40 +61,7 @@ const styles = StyleSheet.create({
     classifierText: {
         textAlign: 'left',
         fontSize: 13,
-    },
-    cta: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 50,
-        width: '50%',
-        margin: 'auto',
-        marginTop: 16,
-        borderWidth: 1,
-        borderColor: '#888',
-        paddingHorizontal: 32,
-        paddingVertical: 8,
-        borderRadius: 10
-    },
-    ctaText: {
-        fontSize: 14
-    },
-    modalOverlay: {
-        flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    modalContent: {
-        width: 300,
-        padding: 20,
-        backgroundColor: 'white',
-        borderRadius: 10,
-        alignItems: 'center',
-    },
-    modalText: {
-        marginBottom: 15,
-    },
+    }
 })
 
 export default HomeScreen

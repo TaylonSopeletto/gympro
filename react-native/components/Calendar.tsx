@@ -13,16 +13,33 @@ const Calendar = () => {
     }
 
     return (
-        <ThemedView style={{ marginTop: 48, maxWidth: '80%', margin: 'auto' }}>
+        <ThemedView style={{ marginTop: 48, margin: 'auto' }}>
             <ThemedText style={styles.title}>April</ThemedText>
             <ThemedView style={styles.days}>
                 {days.slice(0, 14).map((day, index) =>
-                    <ThemedView style={{ ...styles.day, ...cardStyle[colorScheme ?? 'light'] }} key={index}>
-                        <ThemedText style={{ fontSize: 12 }}>{day < 8 ? day : ''}</ThemedText>
+                    <ThemedView
+                        style={
+                            {
+                                ...styles.day,
+                                ...cardStyle[colorScheme ?? 'light']
+                            }
+                        } key={index}>
+                        <ThemedText
+                            style={{ fontSize: 12 }}>
+                            {day < 8 ? day : ''}
+                        </ThemedText>
                     </ThemedView>
                 )}
             </ThemedView>
-            <ThemedText style={{ textAlign: 'right', marginTop: 8, fontSize: 14, marginRight: 8 }}>View all</ThemedText>
+            <ThemedText
+                style={{
+                    textAlign: 'right',
+                    marginTop: 8,
+                    fontSize: 14,
+                    marginRight: 8
+                }}>
+                View all
+            </ThemedText>
         </ThemedView>
     )
 }
@@ -34,14 +51,12 @@ const styles = StyleSheet.create({
     },
     days: {
         display: 'flex',
-        justifyContent: 'center',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        maxWidth: 280,
         margin: 'auto',
         marginTop: 30,
         gap: 10,
-
+        maxWidth: 280
     },
     day: {
         display: 'flex',

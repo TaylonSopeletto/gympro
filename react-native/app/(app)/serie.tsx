@@ -1,35 +1,32 @@
 import { useState } from "react";
-import { TouchableOpacity, StyleSheet, useColorScheme } from "react-native";
+import { StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { setCurrentSerie } from "@/redux/userSlice";
 import Header from "@/components/Header"
 import { ThemedText } from "@/components/ThemedText"
 import { ThemedView } from "@/components/ThemedView"
-import { cardStyle } from "@/constants/Colors";
 import SerieUpdateModal from "@/components/SerieUpdateModal";
 import { useExercises } from "@/hooks/useExercises";
+import { ThemedTouchable } from "@/components/ThemedTouchable";
+import { ThemedCta } from "@/components/ThemedCta";
 
 const SerieScreen = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const { exerciseId } = useLocalSearchParams();
-    const colorScheme = useColorScheme()
     const { series, getExerciseById } = useExercises({ exerciseId: String(exerciseId) })
     const [isModalOpened, setIsModalOpened] = useState<boolean>(false)
 
     return (
-        <ThemedView style={{ height: '100%' }}>
+        <ThemedView style={{ height: '100%', paddingHorizontal: 40 }}>
             <Header title={getExerciseById(String(exerciseId))?.name ?? ''} subtitle="Saturday" />
             <ThemedText style={styles.title}>Todo</ThemedText>
             <ThemedView style={styles.series}>
                 {series?.map((serie, index) =>
-                    <TouchableOpacity
+                    <ThemedTouchable
                         key={index}
-                        style={{
-                            ...styles.serie,
-                            ...cardStyle[colorScheme ?? 'light']
-                        }} >
+                        style={styles.serie} >
                         <ThemedText>Serie {index + 1}</ThemedText>
                         <ThemedText>{serie.repetitions}x - {serie.weight}KG</ThemedText>
                         <ThemedText onPress={() => {
@@ -38,21 +35,12 @@ const SerieScreen = () => {
                         }}>
                             Edit
                         </ThemedText>
-                    </TouchableOpacity>
+                    </ThemedTouchable>
                 )}
             </ThemedView>
-            <TouchableOpacity
-                onPress={() => router.replace('/exercise')}
-                style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginBottom: 100,
-                    width: '100%',
-                    marginTop: 40
-                }}>
-                <ThemedText>Back</ThemedText>
-            </TouchableOpacity>
+            <ThemedCta style={{ marginTop: 20, marginBottom: 50 }} onPress={() => router.replace('/exercise')}>
+                <ThemedText lightColor="#fff" darkColor="#333">Back</ThemedText>
+            </ThemedCta>
             <SerieUpdateModal
                 exerciseId={Number(exerciseId)}
                 isOpened={isModalOpened}
@@ -67,15 +55,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 24,
-        width: '80%',
-        marginHorizontal: 'auto',
         marginTop: 'auto'
     },
     series: {
         display: 'flex',
         flexDirection: 'column',
         gap: 10,
-        width: '80%',
         marginHorizontal: 'auto',
     },
     serie: {
