@@ -1,4 +1,4 @@
-import { TouchableOpacity, StyleSheet, useColorScheme, Button } from "react-native";
+import { TouchableOpacity, StyleSheet, useColorScheme } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { selectExercises, toggleExercise } from "@/redux/userSlice";
 import Header from "@/components/Header"
@@ -38,7 +38,7 @@ const ExerciseScreen = () => {
                         <TouchableOpacity onPress={() => dispatch(toggleExercise({ exerciseId: exercise.id }))}>
                             <MaterialIcons
                                 name={exercise.isDone ? 'check-circle' : 'check-circle-outline'}
-                                size={20} color={colorScheme === 'light' ? 'black' : 'white'}
+                                size={20} color={'green'}
                             />
                         </TouchableOpacity>
                     </TouchableOpacity>

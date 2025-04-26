@@ -14,10 +14,8 @@ interface Props {
 
 const SerieUpdateModal = (props: Props) => {
     const serie = useSelector(selectCurrentSerie);
-
     const colorScheme = useColorScheme()
     const dispatch = useDispatch();
-
     const [repetitions, setRepetitions] = useState<string>()
     const [weight, setWeight] = useState<string>()
 
@@ -36,7 +34,6 @@ const SerieUpdateModal = (props: Props) => {
             <ThemedView style={styles.modalOverlay}>
                 <ThemedView style={{ ...styles.modalContent, ...cardStyle[colorScheme ?? 'light'] }}>
                     <ThemedText style={styles.modalText}>Update serie:</ThemedText>
-
                     <TextInput
                         placeholder="repetitions"
                         value={repetitions}
