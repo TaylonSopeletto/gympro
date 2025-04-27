@@ -6,7 +6,7 @@ import { useDays } from "@/hooks/useDays"
 import { cardStyle } from "@/constants/Colors";
 import { useRouter } from "expo-router";
 import { useDispatch } from "react-redux";
-import { updateExerciseList } from '@/redux/userSlice';
+import { updateDayName, updateExerciseList } from '@/redux/userSlice';
 
 interface Props {
     isOpened: boolean;
@@ -50,6 +50,7 @@ const ExerciseSelectionModal = (props: Props) => {
                             title="Confirm"
                             onPress={() => {
                                 router.push('/exercise')
+                                dispatch(updateDayName(days[currentDay].name))
                                 dispatch(updateExerciseList(days[currentDay].exercises.map(item => ({
                                     ...item,
                                     isDone: false

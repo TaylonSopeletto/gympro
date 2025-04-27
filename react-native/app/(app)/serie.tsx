@@ -10,6 +10,7 @@ import SerieUpdateModal from "@/components/SerieUpdateModal";
 import { useExercises } from "@/hooks/useExercises";
 import { ThemedTouchable } from "@/components/ThemedTouchable";
 import { ThemedCta } from "@/components/ThemedCta";
+import { ThemedIcon } from "@/components/ThemedIcon";
 
 const SerieScreen = () => {
     const dispatch = useDispatch();
@@ -22,7 +23,8 @@ const SerieScreen = () => {
         <ThemedView style={{ height: '100%', paddingHorizontal: 40 }}>
             <Header
                 title={getExerciseById(String(exerciseId))?.name ?? ''}
-                subtitle="Saturday" />
+                subtitle="Saturday"
+            />
             <ThemedText style={styles.title}>Todo</ThemedText>
             <ThemedView style={styles.series}>
                 {series?.map((serie, index) =>
@@ -37,7 +39,11 @@ const SerieScreen = () => {
                             setIsModalOpened(true)
                             dispatch(setCurrentSerie(serie))
                         }}>
-                            Edit
+                            <ThemedIcon
+                                name={"edit"}
+                                size={20}
+                                color={'#008000'}
+                            />
                         </ThemedText>
                     </ThemedTouchable>
                 )}

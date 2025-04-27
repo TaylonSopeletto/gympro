@@ -1,6 +1,6 @@
 import { TouchableOpacity, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { selectExercises, toggleExercise } from "@/redux/userSlice";
+import { selectExercises, toggleExercise, selectUser } from "@/redux/userSlice";
 import Header from "@/components/Header"
 import { ThemedText } from "@/components/ThemedText"
 import { ThemedView } from "@/components/ThemedView"
@@ -10,13 +10,14 @@ import { ThemedTouchable } from "@/components/ThemedTouchable";
 import { ThemedCta } from "@/components/ThemedCta";
 
 const ExerciseScreen = () => {
+    const user = useSelector(selectUser);
     const exercises = useSelector(selectExercises);
     const dispatch = useDispatch();
     const router = useRouter();
 
     return (
         <ThemedView style={{ height: '100%', paddingHorizontal: 40 }}>
-            <Header title='Exercises' subtitle="Saturday" />
+            <Header title={user.dayName} subtitle="Saturday" />
             <ThemedText style={styles.title}>Todo</ThemedText>
             <ThemedView style={styles.exercises}>
                 {exercises.map((exercise, index) =>
@@ -43,7 +44,7 @@ const ExerciseScreen = () => {
                                     'check-circle-outline'
                                 }
                                 size={20}
-                                color={'green'}
+                                color={'#008000'}
                             />
                         </TouchableOpacity>
                     </ThemedTouchable>

@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         height: 50,
-        width: '100%',
+        minWidth: 150,
+        marginHorizontal: 'auto',
         paddingHorizontal: 32,
         paddingVertical: 8,
         borderRadius: 10

@@ -6,6 +6,7 @@ import { ThemedView } from '@/components/ThemedView';
 import { textInputStyle } from '@/constants/Colors';
 import { useSession } from '@/ctx';
 import { loginService } from '@/services/fetchUser';
+import { ThemedCta } from '@/components/ThemedCta';
 
 
 const LoginScreen = () => {
@@ -55,11 +56,18 @@ const LoginScreen = () => {
                     placeholderTextColor="#666"
                 />
                 <ThemedText style={styles.forgotPassword}>Forgot password?</ThemedText>
-                <TouchableOpacity style={styles.button} onPress={async () => {
-                    handleLogin()
-                }}>
-                    <ThemedText style={styles.buttonText}>Login</ThemedText>
-                </TouchableOpacity>
+                <ThemedCta
+                    style={{ marginBottom: 60 }}
+                    onPress={async () => {
+                        handleLogin()
+                    }}>
+                    <ThemedText
+                        lightColor='#fff'
+                        darkColor='#000'
+                    >
+                        Login
+                    </ThemedText>
+                </ThemedCta>
                 <ThemedText>{error}</ThemedText>
             </ThemedView>
         </>
@@ -72,6 +80,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
         padding: 16,
+        paddingHorizontal: 40
     },
     logo: {
         display: 'flex',
@@ -90,28 +99,16 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     text: {
-        width: '80%',
+        width: '100%',
         marginBottom: 10,
         fontSize: 12
     },
     input: {
+        width: '100%',
         height: 50,
-        width: '80%',
         marginBottom: 20,
         paddingHorizontal: 20,
         borderRadius: 10,
-    },
-    button: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 50,
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        width: '50%',
-        marginTop: 30,
-        marginBottom: 120
     },
     forgotPassword: {
         marginVertical: 20

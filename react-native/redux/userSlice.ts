@@ -14,11 +14,15 @@ export interface IExercise {
 }
 
 interface UserState {
+    workoutStartTimeDate: string;
+    dayName: string;
     currentSerie: ISerie | null;
     exercises: IExercise[];
 }
 
 const initialState: UserState = {
+    workoutStartTimeDate: '',
+    dayName: '',
     currentSerie: null,
     exercises: []
 };
@@ -27,6 +31,9 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
+        updateDayName: (state, action: PayloadAction<string>) => {
+            state.dayName = action.payload
+        },
         setCurrentSerie: (state, action: PayloadAction<ISerie>) => {
             state.currentSerie = action.payload
         },
@@ -83,7 +90,8 @@ const userSlice = createSlice({
     },
 });
 
-export const { updateExerciseList, updateExerciseSerie, toggleExercise, setCurrentSerie } = userSlice.actions;
+export const { updateExerciseList, updateExerciseSerie, toggleExercise, setCurrentSerie, updateDayName } = userSlice.actions;
 export const selectExercises = (state: { user: { exercises: IExercise[] } }) => state.user.exercises;
 export const selectCurrentSerie = (state: { user: { currentSerie: ISerie } }) => state.user.currentSerie;
+export const selectUser = (state: { user: UserState }) => state.user;
 export default userSlice.reducer;

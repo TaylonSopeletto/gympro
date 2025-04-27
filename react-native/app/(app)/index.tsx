@@ -18,7 +18,7 @@ const HomeScreen = () => {
                 isOpened={modalVisible}
                 onClose={() => setModalVisible(false)}
             />
-            <Header title='Taylon Sopeletto' subtitle='Saturday' />
+            <Header title='Overview' subtitle='Taylon Sopeletto' />
             <Calendar />
             <ThemedTouchable
                 style={styles.classifier}
