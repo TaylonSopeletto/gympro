@@ -16,7 +16,7 @@ const Calendar = () => {
         <ThemedView style={{ marginTop: 48, margin: 'auto' }}>
             <ThemedText style={styles.title}>April</ThemedText>
             <ThemedView style={styles.days}>
-                {days.slice(0, 14).map((day, index) =>
+                {days.slice(0, 21).map((day, index) =>
                     <ThemedView
                         style={
                             {
@@ -26,7 +26,7 @@ const Calendar = () => {
                         } key={index}>
                         <ThemedText
                             style={{ fontSize: 12 }}>
-                            {day < 8 ? day : ''}
+                            {day}
                         </ThemedText>
                     </ThemedView>
                 )}

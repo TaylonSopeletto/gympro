@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal, StyleSheet, TextInput, useColorScheme } from "react-native"
-import { cardStyle, textInputStyle } from "@/constants/Colors";
+import { Modal, StyleSheet, TextInput, useColorScheme } from "react-native"
+import { textInputStyle } from "@/constants/Colors";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentSerie, updateExerciseSerie } from '@/redux/userSlice';
 import { ThemedView } from "./ThemedView";
