@@ -13,24 +13,35 @@ export interface IExercise {
     series: ISerie[]
 }
 
+export interface IUserInfo {
+    name: ''
+}
+
 interface UserState {
     workoutStartTimeDate: string;
     dayName: string;
     currentSerie: ISerie | null;
     exercises: IExercise[];
+    userInfo: IUserInfo
 }
 
 const initialState: UserState = {
     workoutStartTimeDate: '',
     dayName: '',
     currentSerie: null,
-    exercises: []
+    exercises: [],
+    userInfo: {
+        name: ''
+    }
 };
 
 const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
+        updateUserInfo: (state, action: PayloadAction<IUserInfo>) => {
+            state.userInfo = action.payload
+        },
         updateDayName: (state, action: PayloadAction<string>) => {
             state.dayName = action.payload
         },

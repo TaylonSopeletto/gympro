@@ -42,7 +42,6 @@ const SerieScreen = () => {
                             <ThemedIcon
                                 name={"edit"}
                                 size={20}
-                                color={'#008000'}
                             />
                         </ThemedText>
                     </ThemedTouchable>

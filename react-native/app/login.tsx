@@ -1,4 +1,4 @@
-import { View, TextInput, StyleSheet, Image, TouchableOpacity, useColorScheme, Alert } from 'react-native';
+import { View, TextInput, StyleSheet, Image, useColorScheme } from 'react-native';
 import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { ThemedText } from '@/components/ThemedText';
@@ -7,7 +7,6 @@ import { textInputStyle } from '@/constants/Colors';
 import { useSession } from '@/ctx';
 import { loginService } from '@/services/fetchUser';
 import { ThemedCta } from '@/components/ThemedCta';
-
 
 const LoginScreen = () => {
     const router = useRouter();
