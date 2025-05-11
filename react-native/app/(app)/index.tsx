@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import ExerciseSelectionModal from '@/components/ExerciseSelectionModal'
+import ExerciseSelectionModal from '@/components/modals/ExerciseSelectionModal'
 import Header from "@/components/Header"
 import { ThemedText } from "@/components/ThemedText"
 import { ThemedView } from "@/components/ThemedView"
@@ -8,43 +8,51 @@ import Calendar from "@/components/Calendar"
 import { ThemedTouchable } from '@/components/ThemedTouchable'
 import { ThemedCta } from '@/components/ThemedCta'
 import { ThemedIcon } from '@/components/ThemedIcon'
+import { useSelector } from 'react-redux'
+import { selectUser } from '@/redux/userSlice'
 
 const HomeScreen = () => {
+    const user = useSelector(selectUser);
     const [modalVisible, setModalVisible] = useState(false);
+    const isStudent = user.userInfo.isStudent
 
     return (
         <ThemedView style={{ height: '100%', paddingHorizontal: 40 }}>
-            <ExerciseSelectionModal
-                isOpened={modalVisible}
-                onClose={() => setModalVisible(false)}
-            />
-            <Header title='Overview' subtitle='Taylon Sopeletto' />
-            <Calendar />
-            <ThemedTouchable
-                style={styles.classifier}
-            >
-                <ThemedView style={styles.classifierTitle}>
-                    <ThemedIcon name="qr-code-scanner" size={20} />
-                    <ThemedText style={{ marginRight: 'auto' }}>
-                        Equipment Classifier
-                    </ThemedText>
-                    <ThemedIcon name="arrow-forward" size={20} />
-                </ThemedView>
-                <ThemedText style={styles.classifierText}>
-                    Scan equipment to see its name and related exercises.
-                </ThemedText>
-            </ThemedTouchable>
+            <Header title={user.userInfo.username} subtitle={isStudent ? "Student" : "Instructor"} />
+            {isStudent && <>
+                <ExerciseSelectionModal
+                    isOpened={modalVisible}
+                    onClose={() => setModalVisible(false)}
+                />
 
-            <ThemedCta
-                style={{
-                    marginTop: 20,
-                    marginBottom: 50
-                }}
-                onPress={() => setModalVisible(true)}>
-                <ThemedText lightColor='#fff' darkColor='#000'>
-                    Workout
-                </ThemedText>
-            </ThemedCta>
+                <Calendar />
+                <ThemedTouchable
+                    style={styles.classifier}
+                >
+                    <ThemedView style={styles.classifierTitle}>
+                        <ThemedIcon name="qr-code-scanner" size={20} />
+                        <ThemedText style={{ marginRight: 'auto' }}>
+                            Equipment Classifier
+                        </ThemedText>
+                        <ThemedIcon name="arrow-forward" size={20} />
+                    </ThemedView>
+                    <ThemedText style={styles.classifierText}>
+                        Scan equipment to see its name and related exercises.
+                    </ThemedText>
+                </ThemedTouchable>
+
+                <ThemedCta
+                    style={{
+                        marginTop: 20,
+                        marginBottom: 50
+                    }}
+                    onPress={() => setModalVisible(true)}>
+                    <ThemedText lightColor='#fff' darkColor='#000'>
+                        Workout
+                    </ThemedText>
+                </ThemedCta>
+            </>}
+
         </ThemedView>
     )
 }

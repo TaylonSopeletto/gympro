@@ -7,6 +7,7 @@ import { textInputStyle } from '@/constants/Colors';
 import { useSession } from '@/ctx';
 import { loginService } from '@/services/fetchUser';
 import { ThemedCta } from '@/components/ThemedCta';
+import { useDispatch } from 'react-redux';
 
 const LoginScreen = () => {
     const router = useRouter();
@@ -15,6 +16,7 @@ const LoginScreen = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string>('')
+    const dispatch = useDispatch();
 
     const handleLogin = () => {
         loginService({ email: username, password }).then(res => {

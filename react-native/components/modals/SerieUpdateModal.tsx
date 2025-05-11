@@ -3,9 +3,9 @@ import { Modal, StyleSheet, TextInput, useColorScheme } from "react-native"
 import { textInputStyle } from "@/constants/Colors";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentSerie, updateExerciseSerie } from '@/redux/userSlice';
-import { ThemedView } from "./ThemedView";
-import { ThemedText } from "./ThemedText";
-import { ThemedCta } from "./ThemedCta";
+import { ThemedView } from "../ThemedView";
+import { ThemedText } from "../ThemedText";
+import { ThemedCta } from "../ThemedCta";
 
 interface Props {
     exerciseId: number;
@@ -88,8 +88,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         paddingHorizontal: 20,
         borderRadius: 10,
-        borderWidth: 1,
-        borderColor: '#666',
     },
     text: {
         width: '100%',

@@ -1,13 +1,14 @@
 import React from "react";
 import { Modal, StyleSheet, TouchableOpacity } from "react-native"
-import { ThemedView } from "./ThemedView"
-import { ThemedText } from "./ThemedText"
 import { useDays } from "@/hooks/useDays"
 import { useRouter } from "expo-router";
 import { useDispatch } from "react-redux";
 import { updateDayName, updateExerciseList } from '@/redux/userSlice';
-import { ThemedCta } from "./ThemedCta";
-import { ThemedIcon } from "./ThemedIcon";
+import { ThemedView } from "../ThemedView";
+import { ThemedText } from "../ThemedText";
+import { ThemedIcon } from "../ThemedIcon";
+import { ThemedCta } from "../ThemedCta";
+
 
 interface Props {
     isOpened: boolean;

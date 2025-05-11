@@ -6,7 +6,7 @@ import { setCurrentSerie } from "@/redux/userSlice";
 import Header from "@/components/Header"
 import { ThemedText } from "@/components/ThemedText"
 import { ThemedView } from "@/components/ThemedView"
-import SerieUpdateModal from "@/components/SerieUpdateModal";
+import SerieUpdateModal from "@/components/modals/SerieUpdateModal";
 import { useExercises } from "@/hooks/useExercises";
 import { ThemedTouchable } from "@/components/ThemedTouchable";
 import { ThemedCta } from "@/components/ThemedCta";

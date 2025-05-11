@@ -14,7 +14,8 @@ export interface IExercise {
 }
 
 export interface IUserInfo {
-    name: ''
+    username: string,
+    isStudent: false,
 }
 
 interface UserState {
@@ -31,7 +32,8 @@ const initialState: UserState = {
     currentSerie: null,
     exercises: [],
     userInfo: {
-        name: ''
+        username: '',
+        isStudent: false
     }
 };
 
@@ -101,7 +103,7 @@ const userSlice = createSlice({
     },
 });
 
-export const { updateExerciseList, updateExerciseSerie, toggleExercise, setCurrentSerie, updateDayName } = userSlice.actions;
+export const { updateExerciseList, updateExerciseSerie, toggleExercise, setCurrentSerie, updateDayName, updateUserInfo } = userSlice.actions;
 export const selectExercises = (state: { user: { exercises: IExercise[] } }) => state.user.exercises;
 export const selectCurrentSerie = (state: { user: { currentSerie: ISerie } }) => state.user.currentSerie;
 export const selectUser = (state: { user: UserState }) => state.user;
