@@ -1,8 +1,11 @@
-( this project is not real and was made only for learning porposes )
+
 ![Group 131](https://github.com/user-attachments/assets/073ff3e1-2301-41a2-a3c6-56665566e816)
+
 
 ## About the project
 Gympro is an intelligent fitness assistant designed to enhance workout routines through real-time exercise guidance and smart equipment scanning.
+
+This project is not real and was made only for learning porposes
 
 
 ## Folder structure
